@@ -1,0 +1,411 @@
+<html lang="en">
+  <head>
+    <!-- Requidodgerblue meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <style>
+      html,
+      body {
+        height: 100%;
+        width: 100%;
+        background: linear-gradient(to bottom right, #222222, #111111);
+      }
+
+      .site-wrapper{
+        margin-left: 2rem;
+        margin-right: 2rem;
+      }
+
+      .jumbotron-fluid{
+        color: #077BEF;
+        text-align: center;
+        background: #084787;
+      }
+
+      .page-header{
+        color: white;
+        background: #444444;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        text-align: center;
+      }
+
+      .container{
+        background: dodgerblue;
+        padding-top: 8px;
+        padding-bottom: 8px;
+      }
+
+      .padcontainer{
+        background: #111111;
+        max-width: 400px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        border: 1px solid #white;
+        border: 1px solid rgba(180,180,180,180);
+        border-radius: 5px;
+      }
+
+      .row{
+        padding-left: 4px;
+        padding-right: 4px;
+        margin-top: 4px;
+        margin-bottom: 4px;
+      }
+
+      .col-xs-6{
+        max-width: 100px;
+        background: #222222;
+      }
+
+      .playBn{
+        color: green;
+        cursor: crosshair;
+        background: #222222;
+      }
+
+      .stopBn{
+        color: red;
+        cursor: cell;
+        background: #333333;
+      }
+
+      .recBn{
+        color: orange;
+        cursor: help;
+        background: #444444;
+      }
+
+      .button{
+        height: 40px;
+        width: 40px;
+        margin-left: 4px;
+        margin-top: 4px;
+        margin-bottom: 4px;
+        margin-right: 4px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border: 1px solid #white;
+        border: 1px solid rgba(180,180,180,180);
+        border-radius: 5px;
+        color: white;
+        background: #888888;
+        text-align: center;
+        cursor: pointer;
+      }
+
+      .page-footer{
+        color: white;
+        background: #077BEF;
+        text-align: center;
+      }
+    </style>
+    <title>Capstone</title>
+  </head>
+  <body>
+    <div class="site-wrapper">
+      <div class="jumbotron-fluid">
+        <h1>fancy text here</h1>
+        <audio controls></audio>
+      </div>
+      <div class="page-header">
+        <h2>more text here</h2>
+      </div>
+
+      <div class="container">
+        <div class="row align-items-stretch justify-content-center">
+        <div class="col-xs-6 text-center order-2">
+          <div class="playBn" onclick="play()">play</div>
+          <div class="stopBn" onclick="stop()" id="stop">stop</div>
+          <div class="recBn" onclick="record()" id="rec">record</div>
+        </div>
+        
+        <div class="padcontainer" id="livepad">
+          <div class="row no-gutters">
+            <div class="col">
+              <div class="button sineA3" onclick="set(this, 'mediumseagreen')">0</div>
+              <div class="button sineB3" onclick="set(this, 'dodgerblue')">1</div>
+              <div class="button sineC4" onclick="set(this, 'orange')">2</div>
+              <div class="button sineD4" onclick="set(this, 'tomato')">3</div>
+              <div class="button sineE4" onclick="set(this, 'mediumseagreen')">4</div>
+              <div class="button sineF4" onclick="set(this, 'dodgerblue')">5</div>
+              <div class="button sineG4" onclick="set(this, 'orange')">6</div>
+              <div class="button sineA5" onclick="set(this, 'tomato')">7</div> 
+            </div>
+            <div class="col">
+              <div class="button sineA3" onclick="set(this, 'mediumseagreen')">0</div>
+              <div class="button sineB3" onclick="set(this, 'dodgerblue')">1</div>
+              <div class="button sineC4" onclick="set(this, 'orange')">2</div>
+              <div class="button sineD4" onclick="set(this, 'tomato')">3</div>
+              <div class="button sineE4" onclick="set(this, 'mediumseagreen')">4</div>
+              <div class="button sineF4" onclick="set(this, 'dodgerblue')">5</div>
+              <div class="button sineG4" onclick="set(this, 'orange')">6</div>
+              <div class="button sineA5" onclick="set(this, 'tomato')">7</div> 
+            </div> 
+            <div class="col">
+              <div class="button sineA3" onclick="set(this, 'mediumseagreen')">0</div>
+              <div class="button sineB3" onclick="set(this, 'dodgerblue')">1</div>
+              <div class="button sineC4" onclick="set(this, 'orange')">2</div>
+              <div class="button sineD4" onclick="set(this, 'tomato')">3</div>
+              <div class="button sineE4" onclick="set(this, 'mediumseagreen')">4</div>
+              <div class="button sineF4" onclick="set(this, 'dodgerblue')">5</div>
+              <div class="button sineG4" onclick="set(this, 'orange')">6</div>
+              <div class="button sineA5" onclick="set(this, 'tomato')">7</div> 
+            </div> 
+            <div class="col">
+              <div class="button sineA3" onclick="set(this, 'mediumseagreen')">0</div>
+              <div class="button sineB3" onclick="set(this, 'dodgerblue')">1</div>
+              <div class="button sineC4" onclick="set(this, 'orange')">2</div>
+              <div class="button sineD4" onclick="set(this, 'tomato')">3</div>
+              <div class="button sineE4" onclick="set(this, 'mediumseagreen')">4</div>
+              <div class="button sineF4" onclick="set(this, 'dodgerblue')">5</div>
+              <div class="button sineG4" onclick="set(this, 'orange')">6</div>
+              <div class="button sineA5" onclick="set(this, 'tomato')">7</div> 
+            </div> 
+            <div class="col">
+              <div class="button sineA3" onclick="set(this, 'mediumseagreen')">0</div>
+              <div class="button sineB3" onclick="set(this, 'dodgerblue')">1</div>
+              <div class="button sineC4" onclick="set(this, 'orange')">2</div>
+              <div class="button sineD4" onclick="set(this, 'tomato')">3</div>
+              <div class="button sineE4" onclick="set(this, 'mediumseagreen')">4</div>
+              <div class="button sineF4" onclick="set(this, 'dodgerblue')">5</div>
+              <div class="button sineG4" onclick="set(this, 'orange')">6</div>
+              <div class="button sineA5" onclick="set(this, 'tomato')">7</div> 
+            </div> 
+            <div class="col">
+              <div class="button sineA3" onclick="set(this, 'mediumseagreen')">0</div>
+              <div class="button sineB3" onclick="set(this, 'dodgerblue')">1</div>
+              <div class="button sineC4" onclick="set(this, 'orange')">2</div>
+              <div class="button sineD4" onclick="set(this, 'tomato')">3</div>
+              <div class="button sineE4" onclick="set(this, 'mediumseagreen')">4</div>
+              <div class="button sineF4" onclick="set(this, 'dodgerblue')">5</div>
+              <div class="button sineG4" onclick="set(this, 'orange')">6</div>
+              <div class="button sineA5" onclick="set(this, 'tomato')">7</div> 
+            </div> 
+            <div class="col">
+              <div class="button sineA3" onclick="set(this, 'mediumseagreen')">0</div>
+              <div class="button sineB3" onclick="set(this, 'dodgerblue')">1</div>
+              <div class="button sineC4" onclick="set(this, 'orange')">2</div>
+              <div class="button sineD4" onclick="set(this, 'tomato')">3</div>
+              <div class="button sineE4" onclick="set(this, 'mediumseagreen')">4</div>
+              <div class="button sineF4" onclick="set(this, 'dodgerblue')">5</div>
+              <div class="button sineG4" onclick="set(this, 'orange')">6</div>
+              <div class="button sineA5" onclick="set(this, 'tomato')">7</div> 
+            </div> 
+            <div class="col">
+              <div class="button sineA3" onclick="set(this, 'mediumseagreen')">0</div>
+              <div class="button sineB3" onclick="set(this, 'dodgerblue')">1</div>
+              <div class="button sineC4" onclick="set(this, 'orange')">2</div>
+              <div class="button sineD4" onclick="set(this, 'tomato')">3</div>
+              <div class="button sineE4" onclick="set(this, 'mediumseagreen')">4</div>
+              <div class="button sineF4" onclick="set(this, 'dodgerblue')">5</div>
+              <div class="button sineG4" onclick="set(this, 'orange')">6</div>
+              <div class="button sineA5" onclick="set(this, 'tomato')">7</div> 
+            </div>    
+          </div> 
+        </div> 
+      </div>
+    </div>
+      
+      <footer class="page-footer font-small">
+        <div class="container-fluid">
+          <p>FOOTER text go here</p>
+        </div>
+      </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      
+      //def_color used to verify buttons being on/off
+      var def_color = 'rgb(136, 136, 136)';
+
+      //WebAudio setup
+      //chunks[] stores blobs of audio
+      var chunks = [];
+      var AudioContext = window.AudioContext || window.webkitAudioContext;
+      var context = new AudioContext();
+      var song = context.createMediaStreamDestination();
+      var mediaRecorder = new MediaRecorder(song.stream);
+
+
+      //bool used in record() . I have no clue how Js booleans works but this works for me.
+      var bool = 0;
+
+      // records audio, check if record button element is on or off
+      function record(){
+        r = document.getElementById("rec");
+        if(bool == 0){
+          r.style.color = "purple"
+          bool = 1;
+          mediaRecorder.start(500);
+          play();
+        }
+        else if(bool == 1){
+          r.style.color = "orange"
+          bool = 0;
+          clearInterval(clock);
+          mediaRecorder.stop();
+          mediaRecorder.release();
+          mediaRecorder.reset();
+        }
+      }
+
+      mediaRecorder.ondataavailable = function(e){
+        chunks.push(e.data);
+      };
+
+      mediaRecorder.onstop = function(e){
+        var blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
+        document.querySelector("audio").src = URL.createObjectURL(blob);
+      };
+
+      //clean this up eventually..
+      //as of now each call to this function creates and plays
+      //an oscillator sound.
+
+      //onclick function
+      //check the elements class and play the corresponding sound.
+      //gain makes the audio easier on the ears.
+      function playAudio(element){
+        var osc = context.createOscillator();
+        var gain = context.createGain();
+        osc.type = "sine";
+        
+        if(element.classList.contains("sineA3")){
+          osc.frequency.value = 220.0;
+          osc.connect(gain);
+          gain.connect(context.destination);
+          gain.connect(song);
+          gain.gain.linearRampToValueAtTime(1, context.currentTime + 0.005);
+          gain.gain.linearRampToValueAtTime(0, context.currentTime + 0.5);
+          osc.start();
+          osc.stop(context.currentTime + .5);
+        }
+        else if(element.classList.contains("sineB3")){
+          osc.frequency.value = 246.9;
+          osc.connect(gain);
+          gain.connect(context.destination);
+          gain.connect(song);
+          gain.gain.linearRampToValueAtTime(1, context.currentTime + 0.005);
+          gain.gain.linearRampToValueAtTime(0, context.currentTime + 0.5);
+          osc.start();
+          osc.stop(context.currentTime + .5);
+        }
+        else if(element.classList.contains("sineC4")){
+          osc.frequency.value = 261.6;
+          osc.connect(gain);
+          gain.connect(context.destination);
+          gain.connect(song);
+          gain.gain.linearRampToValueAtTime(1, context.currentTime + 0.005);
+          gain.gain.linearRampToValueAtTime(0, context.currentTime + 0.5);
+          osc.start();
+          osc.stop(context.currentTime + .5);
+        }
+        else if(element.classList.contains("sineD4")){
+          osc.frequency.value = 293.7;
+          osc.connect(gain);
+          gain.connect(context.destination);
+          gain.connect(song);
+          gain.gain.linearRampToValueAtTime(1, context.currentTime + 0.005);
+          gain.gain.linearRampToValueAtTime(0, context.currentTime + 0.5);
+          osc.start();
+          osc.stop(context.currentTime + .5);
+        }
+        else if(element.classList.contains("sineE4")){
+          osc.frequency.value = 329.6;
+          osc.connect(gain);
+          gain.connect(context.destination);
+          gain.connect(song);
+          gain.gain.linearRampToValueAtTime(1, context.currentTime + 0.005);
+          gain.gain.linearRampToValueAtTime(0, context.currentTime + 0.5);
+          osc.start();
+          osc.stop(context.currentTime + .5);
+        }
+        else if(element.classList.contains("sineF4")){
+          osc.frequency.value = 349.2;
+          osc.connect(gain);
+          gain.connect(context.destination);
+          gain.connect(song);
+          gain.gain.linearRampToValueAtTime(1, context.currentTime + 0.005);
+          gain.gain.linearRampToValueAtTime(0, context.currentTime + 0.5);
+          osc.start();
+          osc.stop(context.currentTime + .5);
+        }
+        else if(element.classList.contains("sineG4")){
+          osc.frequency.value = 392.0;
+          osc.connect(gain);
+          gain.connect(context.destination);
+          gain.connect(song);
+          gain.gain.linearRampToValueAtTime(1, context.currentTime + 0.005);
+          gain.gain.linearRampToValueAtTime(0, context.currentTime + 0.5);
+          osc.start();
+          osc.stop(context.currentTime + .5);
+        }
+        else if(element.classList.contains("sineA5")){
+          osc.frequency.value = 440.0;
+          osc.connect(gain);
+          gain.connect(context.destination);
+          gain.connect(song);
+          gain.gain.linearRampToValueAtTime(1, context.currentTime + 0.005);
+          gain.gain.linearRampToValueAtTime(0, context.currentTime + 0.5);
+          osc.start();
+          osc.stop(context.currentTime + .5);
+        }
+      }
+
+      //turns buttons on/off
+      function set(element, color){
+        if(element.style.background == color){
+          element.style.background = def_color;
+        }
+        else{
+          element.style.background = color;
+          //remove the following line eventually
+          playAudio(element);
+        }
+      }
+
+      var testArr = document.getElementsByClassName("button");
+      var clock;
+
+      function play(){
+        var i = 0;
+        var clock = setInterval(function loop(){
+          
+          //put this outside eventually
+          s = document.getElementById("stop");
+          s.addEventListener("click", function(){
+            clearInterval(clock);
+            console.log("uhde");
+          });
+          
+          //bleh
+          var eight = i+8;
+          for(i; i<eight; i++){
+            var style = window.getComputedStyle(testArr[i], null);
+            if(style.backgroundColor == def_color){
+              console.log("NOTHING", i);
+            }
+            else{
+              playAudio(testArr[i]);
+              console.log("PLAY SOUND", i, style.backgroundColor);
+            }
+          }
+          if(i > 63){
+            i = 0;
+            /*
+            clearInterval(clock);
+            */
+          }
+        }, 500);
+      }
+    </script>
+  </body>
+</html>

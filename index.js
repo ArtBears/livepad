@@ -14,6 +14,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 
+app.get('/', (req, res) => {
+	res.sendFile(__dirname + '/index.html')
+});
+
 // app.use('/', index);
+
+app.listen(3000, () => {console.log("app running")});
 
 module.exports = app;
