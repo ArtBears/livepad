@@ -1,0 +1,95 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(to bottom right, #222222, #111111);
+}
+
+.site-wrapper{
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.jumbotron-fluid{
+  color: #077BEF;
+  text-align: center;
+  background: #084787;
+}
+
+.page-header{
+  color: white;
+  background: #444444;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  text-align: center;
+}
+
+.container{
+  background: dodgerblue;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.padcontainer{
+  background: #111111;
+  max-width: 400px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border: 1px solid #white;
+  border: 1px solid rgba(180,180,180,180);
+  border-radius: 5px;
+}
+
+.row{
+  padding-left: 4px;
+  padding-right: 4px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.col-xs-6{
+  max-width: 100px;
+  background: #222222;
+}
+
+.playBn{
+  color: green;
+  cursor: crosshair;
+  background: #222222;
+}
+
+.stopBn{
+  color: red;
+  cursor: cell;
+  background: #333333;
+}
+
+.recBn{
+  color: orange;
+  cursor: help;
+  background: #444444;
+}
+
+.button{
+  height: 40px;
+  width: 40px;
+  margin-left: 4px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  margin-right: 4px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border: 1px solid #white;
+  border: 1px solid rgba(180,180,180,180);
+  border-radius: 5px;
+  color: white;
+  background: #888888;
+  text-align: center;
+  cursor: pointer;
+}
+
+.page-footer{
+  color: white;
+  background: #077BEF;
+  text-align: center;
+}
