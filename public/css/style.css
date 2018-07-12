@@ -30,6 +30,34 @@ body {
   padding-bottom: 8px;
 }
 
+.hiddenBox{
+  pointer-events: none;
+  position: absolute;
+  opacity: 0;
+  max-width: 50px;
+  height: 348px;
+  width: 40px;
+  margin-left: 4px;
+  margin-right: 4px;
+  margin-top: 4px;
+  border-radius: 5px;
+  animation-name: neat;
+  animation-duration: 0;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes neat{
+  0%{
+    box-shadow: 0px 0px 5px 1px white;
+  }
+  100%{
+    box-shadow: 0px 0px 5px 3px white;
+  }
+}
+
+
 .padcontainer{
   background: #111111;
   max-width: 400px;
@@ -70,6 +98,37 @@ body {
   background: #444444;
 }
 
+.settingsBx{
+  color: white;
+  cursor: pointer;
+  margin-top: 90px;
+}
+
+.clearBn{
+  color: white;
+  cursor: pointer;
+  background: red;
+  margin-top: 70px;
+}
+
+no-spinners {
+-moz-appearance:textfield;
+}
+
+.no-spinners::-webkit-outer-spin-button,
+.no-spinners::-webkit-inner-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+
+input[type=number]{
+  width: 100%;
+  border: none;
+  cursor: text;
+  border-bottom: 2px solid grey;
+  text-align: center;
+}
+
 .button{
   height: 40px;
   width: 40px;
@@ -79,13 +138,20 @@ body {
   margin-right: 4px;
   padding-top: 5px;
   padding-bottom: 5px;
-  border: 1px solid #white;
-  border: 1px solid rgba(180,180,180,180);
+  border: 2px solid rgba(180,180,180,180);
   border-radius: 5px;
+  border-style: outset;
   color: white;
   background: #888888;
+  background-radius: 5px;
+  background-color: #888888;
+  backgroundColor: #888888;
   text-align: center;
   cursor: pointer;
+}
+
+.button:hover{
+  border-style: inset;
 }
 
 .page-footer{

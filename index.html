@@ -1,20 +1,4 @@
-<!DOCTYPE html>
-<html lang="en" >
-
-<head>
-  <meta charset="UTF-8">
-  <title>cstone-726n</title>
-  
-  
-  
-      <link rel="stylesheet" href="css/style.css">
-
-  
-</head>
-
-<body>
-
-  <html lang="en">
+<html lang="en">
   <head>
     <!-- Requidodgerblue meta tags -->
     <meta charset="utf-8">
@@ -32,20 +16,28 @@
         <audio controls></audio>
       </div>
       <div class="page-header">
-        <h2>more text here</h2>
+        <h2 id="userTime">more text here</h2>
       </div>
 
       <div class="container">
         <div class="row align-items-stretch justify-content-center">
-        <div class="col-xs-6 text-center order-2">
-          <div class="playBn" onclick="play()">play</div>
-          <div class="stopBn" onclick="stop()" id="stop">stop</div>
-          <div class="recBn" onclick="record()" id="rec">record</div>
-        </div>
+          <div class="col-xs-6 text-center order-3">
+            <div class="playBn" onclick="play()">play</div>
+            <div class="stopBn" onclick="stop()" id="stop">stop</div>
+            <div class="recBn" onclick="record()" id="rec">record</div>
+            <div class ="settingsBx">
+              <form>
+                <label for="tempo">Tempo</label>
+                <input type="number" id="tempo" name="tempo" value="80" class="no-spinners"</input>
+              </form>
+            </div>
+            <div class="clearBn" onclick="reset()">clear</div>
+          </div>
         
         <div class="padcontainer" id="livepad">
           <div class="row no-gutters">
             <div class="col">
+              <div class="hiddenBox"></div>
               <div class="button sineA3" onclick="set(this, 'mediumseagreen')">0</div>
               <div class="button sineB3" onclick="set(this, 'dodgerblue')">1</div>
               <div class="button sineC4" onclick="set(this, 'orange')">2</div>
@@ -56,6 +48,7 @@
               <div class="button sineA5" onclick="set(this, 'tomato')">7</div> 
             </div>
             <div class="col">
+              <div class="hiddenBox"></div>
               <div class="button sineA3" onclick="set(this, 'mediumseagreen')">0</div>
               <div class="button sineB3" onclick="set(this, 'dodgerblue')">1</div>
               <div class="button sineC4" onclick="set(this, 'orange')">2</div>
@@ -66,6 +59,7 @@
               <div class="button sineA5" onclick="set(this, 'tomato')">7</div> 
             </div> 
             <div class="col">
+              <div class="hiddenBox"></div>
               <div class="button sineA3" onclick="set(this, 'mediumseagreen')">0</div>
               <div class="button sineB3" onclick="set(this, 'dodgerblue')">1</div>
               <div class="button sineC4" onclick="set(this, 'orange')">2</div>
@@ -76,6 +70,7 @@
               <div class="button sineA5" onclick="set(this, 'tomato')">7</div> 
             </div> 
             <div class="col">
+              <div class="hiddenBox"></div>
               <div class="button sineA3" onclick="set(this, 'mediumseagreen')">0</div>
               <div class="button sineB3" onclick="set(this, 'dodgerblue')">1</div>
               <div class="button sineC4" onclick="set(this, 'orange')">2</div>
@@ -86,6 +81,7 @@
               <div class="button sineA5" onclick="set(this, 'tomato')">7</div> 
             </div> 
             <div class="col">
+              <div class="hiddenBox"></div>
               <div class="button sineA3" onclick="set(this, 'mediumseagreen')">0</div>
               <div class="button sineB3" onclick="set(this, 'dodgerblue')">1</div>
               <div class="button sineC4" onclick="set(this, 'orange')">2</div>
@@ -96,6 +92,7 @@
               <div class="button sineA5" onclick="set(this, 'tomato')">7</div> 
             </div> 
             <div class="col">
+              <div class="hiddenBox"></div>
               <div class="button sineA3" onclick="set(this, 'mediumseagreen')">0</div>
               <div class="button sineB3" onclick="set(this, 'dodgerblue')">1</div>
               <div class="button sineC4" onclick="set(this, 'orange')">2</div>
@@ -106,6 +103,7 @@
               <div class="button sineA5" onclick="set(this, 'tomato')">7</div> 
             </div> 
             <div class="col">
+              <div class="hiddenBox"></div>
               <div class="button sineA3" onclick="set(this, 'mediumseagreen')">0</div>
               <div class="button sineB3" onclick="set(this, 'dodgerblue')">1</div>
               <div class="button sineC4" onclick="set(this, 'orange')">2</div>
@@ -116,6 +114,7 @@
               <div class="button sineA5" onclick="set(this, 'tomato')">7</div> 
             </div> 
             <div class="col">
+              <div class="hiddenBox"></div>
               <div class="button sineA3" onclick="set(this, 'mediumseagreen')">0</div>
               <div class="button sineB3" onclick="set(this, 'dodgerblue')">1</div>
               <div class="button sineC4" onclick="set(this, 'orange')">2</div>
@@ -142,15 +141,4 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
   </body>
-</html>
-  
-  
-
-    <script  src="js/index.js"></script>
-
-
-
-
-</body>
-
 </html>
