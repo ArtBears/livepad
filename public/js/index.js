@@ -86,7 +86,7 @@ mediaRecorder.onstop = function(e){
   
 };
 
-var kick = new Audio("/public/js/samples/kick1.wav");
+var sample = new Audio('/public/js/samples/kick1.wav');
 
 //clean this up eventually..
 //as of now each call to this function creates and plays
@@ -101,13 +101,14 @@ function playAudio(element){
   osc.type = "sine";
   
   if(element.classList.contains("sineA3")){
-    kick.play();
+    var kick = AudioContext.createMediaElementSource(sample);
     kick.connect(gain);
     gain.connect(context.destination);
     gain.connect(song);
     gain.gain.linearRampToValueAtTime(1, context.currentTime + 0.005);
     gain.gain.linearRampToValueAtTime(0, context.currentTime + 0.5);
     kick.start();
+    kick.play();
   }
   else if(element.classList.contains("sineB3")){
     osc.frequency.value = 246.9;
