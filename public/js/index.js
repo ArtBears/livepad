@@ -101,6 +101,7 @@ function playAudio(element){
   osc.type = "sine";
   
   if(element.classList.contains("sineA3")){
+    kick.play();
     kick.connect(gain);
     gain.connect(context.destination);
     gain.connect(song);
