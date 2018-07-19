@@ -86,7 +86,7 @@ mediaRecorder.onstop = function(e){
   
 };
 
-var sample = new Audio('./public/js/samples/kick1.wav');
+var kick = new Audio("./public/js/samples/kick1.wv");
 
 //clean this up eventually..
 //as of now each call to this function creates and plays
@@ -96,7 +96,6 @@ var sample = new Audio('./public/js/samples/kick1.wav');
 //check the elements class and play the corresponding sound.
 //gain makes the audio easier on the ears.
 function playAudio(element){
-  var kick = context.createMediaElementSource(sample);
   var osc = context.createOscillator();
   var gain = context.createGain();
   osc.type = "sine";
