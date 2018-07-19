@@ -96,12 +96,12 @@ var sample = new Audio('/public/js/samples/kick1.wav');
 //check the elements class and play the corresponding sound.
 //gain makes the audio easier on the ears.
 function playAudio(element){
+  var kick = context.createMediaElementSource(sample);
   var osc = context.createOscillator();
   var gain = context.createGain();
   osc.type = "sine";
   
   if(element.classList.contains("sineA3")){
-    var kick = AudioContext.createMediaElementSource(sample);
     kick.connect(gain);
     gain.connect(context.destination);
     gain.connect(song);
