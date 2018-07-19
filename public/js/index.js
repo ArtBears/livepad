@@ -83,6 +83,7 @@ mediaRecorder.ondataavailable = function(e){
 mediaRecorder.onstop = function(e){
   var blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
   document.querySelector("audio").src = URL.createObjectURL(blob);
+  
 };
 
 //clean this up eventually..
@@ -105,7 +106,6 @@ function playAudio(element){
     gain.gain.linearRampToValueAtTime(1, context.currentTime + 0.005);
     gain.gain.linearRampToValueAtTime(0, context.currentTime + 0.5);
     osc.start();
-    osc.stop(context.currentTime + .5);
   }
   else if(element.classList.contains("sineB3")){
     osc.frequency.value = 246.9;
@@ -115,7 +115,6 @@ function playAudio(element){
     gain.gain.linearRampToValueAtTime(1, context.currentTime + 0.005);
     gain.gain.linearRampToValueAtTime(0, context.currentTime + 0.5);
     osc.start();
-    osc.stop(context.currentTime + .5);
   }
   else if(element.classList.contains("sineC4")){
     osc.frequency.value = 261.6;
@@ -125,7 +124,6 @@ function playAudio(element){
     gain.gain.linearRampToValueAtTime(1, context.currentTime + 0.005);
     gain.gain.linearRampToValueAtTime(0, context.currentTime + 0.5);
     osc.start();
-    osc.stop(context.currentTime + .5);
   }
   else if(element.classList.contains("sineD4")){
     osc.frequency.value = 293.7;
@@ -135,7 +133,6 @@ function playAudio(element){
     gain.gain.linearRampToValueAtTime(1, context.currentTime + 0.005);
     gain.gain.linearRampToValueAtTime(0, context.currentTime + 0.5);
     osc.start();
-    osc.stop(context.currentTime + .5);
   }
   else if(element.classList.contains("sineE4")){
     osc.frequency.value = 329.6;
@@ -145,7 +142,6 @@ function playAudio(element){
     gain.gain.linearRampToValueAtTime(1, context.currentTime + 0.005);
     gain.gain.linearRampToValueAtTime(0, context.currentTime + 0.5);
     osc.start();
-    osc.stop(context.currentTime + .5);
   }
   else if(element.classList.contains("sineF4")){
     osc.frequency.value = 349.2;
@@ -155,7 +151,6 @@ function playAudio(element){
     gain.gain.linearRampToValueAtTime(1, context.currentTime + 0.005);
     gain.gain.linearRampToValueAtTime(0, context.currentTime + 0.5);
     osc.start();
-    osc.stop(context.currentTime + .5);
   }
   else if(element.classList.contains("sineG4")){
     osc.frequency.value = 392.0;
@@ -165,7 +160,6 @@ function playAudio(element){
     gain.gain.linearRampToValueAtTime(1, context.currentTime + 0.005);
     gain.gain.linearRampToValueAtTime(0, context.currentTime + 0.5);
     osc.start();
-    osc.stop(context.currentTime + .5);
   }
   else if(element.classList.contains("sineA5")){
     osc.frequency.value = 440.0;
@@ -175,7 +169,6 @@ function playAudio(element){
     gain.gain.linearRampToValueAtTime(1, context.currentTime + 0.005);
     gain.gain.linearRampToValueAtTime(0, context.currentTime + 0.5);
     osc.start();
-    osc.stop(context.currentTime + .5);
   }
 }
 
