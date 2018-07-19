@@ -86,6 +86,8 @@ mediaRecorder.onstop = function(e){
   
 };
 
+var kick = new Audio('/public/samples/kick1.wv');
+
 //clean this up eventually..
 //as of now each call to this function creates and plays
 //an oscillator sound.
@@ -99,13 +101,12 @@ function playAudio(element){
   osc.type = "sine";
   
   if(element.classList.contains("sineA3")){
-    osc.frequency.value = 220.0;
-    osc.connect(gain);
+    kick.connect(gain);
     gain.connect(context.destination);
     gain.connect(song);
     gain.gain.linearRampToValueAtTime(1, context.currentTime + 0.005);
     gain.gain.linearRampToValueAtTime(0, context.currentTime + 0.5);
-    osc.start();
+    kick.start();
   }
   else if(element.classList.contains("sineB3")){
     osc.frequency.value = 246.9;
