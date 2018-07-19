@@ -86,7 +86,7 @@ mediaRecorder.onstop = function(e){
   
 };
 
-var kick = new Audio("./js/kick1.wv");
+var kick = new Audio("./public/js/samples/kick1.wv"); // fix this
 
 //clean this up eventually..
 //as of now each call to this function creates and plays
