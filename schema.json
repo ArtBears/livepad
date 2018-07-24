@@ -1,0 +1,88 @@
+{
+    "schemas" : {
+        "sessions": {"validator": {
+            "$jsonSchema": {
+                "bsonType": "object",
+                "required": ["name", "date", "start", "end", "users", "songs", "diskLocation"],
+                "properties": {
+                    "name": {
+                        "bsonType": "string",
+                        "description": "Name of the session. Required"
+                    },             
+                    "date": {
+                        "bsonType": "date",
+                        "description": "Date of the session. Required"
+                    },
+                    "start": {
+                        "bsonType": "timestamp",
+                        "description": "Start time of the session. Required"
+                    },
+                    "end":{
+                        "bsonType": "timestamp",
+                        "description": "End time of the session. Required"
+                    },
+                    "users":{
+                        "bsonType": "array",
+                        "description": "Array of user ids in the session. Required"
+                    },
+                    "songs":{
+                        "bsonType": "array",
+                        "description": "Array of song ids in the session. Required"
+                    },
+                    "diskLocation":{
+                        "bsonType": "string",
+                        "description": "Directory location of the session on disk. Required"
+                    }
+                }
+            }
+        }},
+        "songs": {"validator": {
+            "$jsonSchema": {
+                "bsonType": "object", 
+                "required": ["name", "userId", "sessionId", "length"],
+                "properties": {
+                    "name": {
+                        "bsonType": "string",
+                        "description": "Title of the song. Required"
+                    },
+                    "userId": {
+                        "bsonType": "objectId",
+                        "description": "ObjectId of the user who created this song. Required"
+                    },
+                    "sessionId": {
+                        "bsonType": "objectId",
+                        "description": "ObjectId of the session the songbelongs to. Required"
+                    },
+                    "length": {
+                        "bsonType": "double",
+                        "description": "Length of the song as a double. Required"
+                    }
+                }
+            }    
+        }},
+        "users": {"validator": {
+            "$jsonSchema": {
+                "bsonType": "object", 
+                "required": ["name", "password", "sessions", "songs"],
+                "properties": {
+                    "name": {
+                        "bsonType": "string",
+                        "description": "Name of the user. Required"
+                    },
+                    "password": {
+                        "bsonType": "string",
+                        "description": "User Password. Required"
+                    },
+                    "sessions": {
+                        "bsonType": "array",
+                        "description": "Array of session ObjectIds the user was in. Required"
+                    },
+                    "songs": {
+                        "bsonType": "array",
+                        "description": "Array of song ObjectIds the user created. Required"
+                    }
+                }
+            }
+        }}
+    }
+}
