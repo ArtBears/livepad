@@ -89,10 +89,10 @@ mediaRecorder.onstop = function(e){
 //make this modular to support other presets
 
 var soundBuffer;
-var sound_url = 'js/samples/kick1.wv';
+var sound_url = './js/samples/kick1.wv';
 
 var request = new XMLHttpRequest();
-request.open("GET", sound_url);
+request.open("GET", sound_url, true);
 request.responseType = "arraybuffer";
 
 request.onload = function(){
