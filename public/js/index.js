@@ -106,12 +106,12 @@ function playAudio(element){
   osc.type = "sine";
   
   if(element.classList.contains("sineA3")){
-    kick.connect(gain);
+    source.connect(gain);
     gain.connect(context.destination);
     gain.connect(song);
     gain.gain.linearRampToValueAtTime(1, context.currentTime + 0.005);
     gain.gain.linearRampToValueAtTime(0, context.currentTime + 0.5);
-    kick.start();
+    source.start();
   }
   else if(element.classList.contains("sineB3")){
     osc.frequency.value = 246.9;
