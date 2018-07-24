@@ -86,10 +86,25 @@ mediaRecorder.onstop = function(e){
   
 };
 
-var kick = new Audio();
-source = context.createMediaElementSource(kick);
+//make this modular to support other presets
 
-kick.src = "js/samples/kick1.wv";
+var soundBuffer;
+var sound_url = 'js/samples/kick1.wv';
+
+var request = new XMLHttpRequest();
+request.open("GET", sound_url);
+request.responseType = "arraybuffer";
+
+request.onload = function(){
+  context.decodeAudioData(request.response, function(buffer){
+    soundBuffer = buffer;
+  });
+};
+request.send();
+
+var kick = context.createBufferSource();
+kick.buffer = soundBuffer;
+
 
 
 
@@ -106,12 +121,12 @@ function playAudio(element){
   osc.type = "sine";
   
   if(element.classList.contains("sineA3")){
-    source.connect(gain);
+    kick.connect(gain);
     gain.connect(context.destination);
     gain.connect(song);
     gain.gain.linearRampToValueAtTime(1, context.currentTime + 0.005);
     gain.gain.linearRampToValueAtTime(0, context.currentTime + 0.5);
-    source.play();
+    kick.start();
   }
   else if(element.classList.contains("sineB3")){
     osc.frequency.value = 246.9;
