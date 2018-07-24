@@ -9,11 +9,12 @@ global.appRoot = path.resolve(__dirname);
 
 app = express();
 
+/* collections  */
+const liveCollections = ["Users", "Sessions", "Songs"];
+
 /* routes */
 const index = require('./routes/index.js');
 
-/* collections  */
-const liveCollections = ["Users", "Sessions", "Songs"];
 
 /* Middleware */
 app.use(bodyParser.json());
@@ -25,6 +26,7 @@ app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 app.use(express.static(path.join(__dirname, '/public/')));
 app.use(express.static('public/audio/Samples1/hhat1.wv'));
+
 // app.get('/', (req, res) => {
  //	res.sendFile(__dirname + '/index.html');
 // });
@@ -33,7 +35,7 @@ app.use('/', index);
 
 
 // To run app without database access uncomment the next line 
-app.listen(3000, () => {console.log("app running")});
+//app.listen(3000, () => {console.log("app running")});
 
 
 // Comment out MongoClient block to run without DB client
@@ -50,7 +52,7 @@ MongoClient.connect("mongodb://localhost:27017", function(err, client){
  			req.db = db;
  			console.log(req.db);
  			next();
- 		})
+ 		});
  		express.request.db = db;
  		console.log("DB CONNECTED!");
         db.listCollections().toArray( (err, items) => {
@@ -60,7 +62,7 @@ MongoClient.connect("mongodb://localhost:27017", function(err, client){
                     // no? create the collections
                     db.createCollection(
                         liveCollections[col], 
-                        schemas[liveCollections[col].toLowerCase()]        
+                        schemas[liveCollections[col].toLowerCase()]
                     ).catch((err) => {
                         console.log("Collection Create or Validation Error: " + err);
                         exit();
@@ -69,9 +71,8 @@ MongoClient.connect("mongodb://localhost:27017", function(err, client){
                     // yes? continue;
                     continue;
                 }
-            }  
+            }   
         })
-
 
  		app.listen(3000, () => { console.log(" App Listening on Port 3000 ") }); 
  	}
