@@ -111,7 +111,7 @@ function playAudio(element){
     gain.connect(song);
     gain.gain.linearRampToValueAtTime(1, context.currentTime + 0.005);
     gain.gain.linearRampToValueAtTime(0, context.currentTime + 0.5);
-    source.start();
+    source.play();
   }
   else if(element.classList.contains("sineB3")){
     osc.frequency.value = 246.9;
