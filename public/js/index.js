@@ -86,8 +86,12 @@ mediaRecorder.onstop = function(e){
   
 };
 
-var kick = context.createBufferSource();
-kick.buffer = 'js/samples/kick1.wv';
+var kick = new Audio();
+source = context.createMediaElementSource(kick);
+
+kick.src = "js/samples/kick1.wv";
+
+
 
 //clean this up eventually..
 //as of now each call to this function creates and plays
