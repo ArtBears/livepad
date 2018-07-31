@@ -12,21 +12,32 @@
     <title>Capstone</title>
   </head>
   <body>
-    <div class="site-wrapper">
-      <div class="jumbotron-fluid">
-        <h1>fancy text here</h1>
+    <footer class="site-wrapper">
+      <nav class="navbar navbar-custom navbar-expand">
+      <a class="navbar-brand" href="#">Capstone</a>
+      
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Sessions</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+      <div class="page-header">
+        <h6 id="userTime">time</h6>
         <audio controls id="HELP"></audio>
       </div>
-      <div class="page-header">
-        <h2 id="userTime">more text here</h2>
-      </div>
 
-      <div class="container">
+      <div class="container align-self-center">
         <div class="row align-items-stretch justify-content-center">
           <div class="col-xs-6 text-center order-3">
-            <div class="playBn" onclick="play()">play</div>
-            <div class="stopBn" onclick="stop()" id="stop">stop</div>
-            <div class="recBn" onclick="record()" id="rec">record</div>
+            <div class="playBn" onclick="play()">PLAY</div>
+            <div class="stopBn" onclick="stop()" id="stop">STOP</div>
+            <div class="recBn" onclick="record()" id="rec">RECORD</div>
             <div class ="settingsBx">
               <form>
                 <label for="tempo">Tempo</label>
@@ -40,101 +51,99 @@
           <div class="row no-gutters">
             <div class="col">
               <div class="hiddenBox"></div>
-              <div class="button sineA3" onclick="set(this, 'mediumseagreen')">0</div>
-              <div class="button sineB3" onclick="set(this, 'dodgerblue')">1</div>
-              <div class="button sineC4" onclick="set(this, 'orange')">2</div>
-              <div class="button sineD4" onclick="set(this, 'tomato')">3</div>
-              <div class="button sineE4" onclick="set(this, 'mediumseagreen')">4</div>
-              <div class="button sineF4" onclick="set(this, 'dodgerblue')">5</div>
-              <div class="button sineG4" onclick="set(this, 'orange')">6</div>
-              <div class="button sineA5" onclick="set(this, 'tomato')">7</div> 
+              <div class="button sineA3" onclick="set(this, 'mediumseagreen')"></div>
+              <div class="button sineB3" onclick="set(this, 'dodgerblue')"></div>
+              <div class="button sineC4" onclick="set(this, 'orange')"></div>
+              <div class="button sineD4" onclick="set(this, 'tomato')"></div>
+              <div class="button sineE4" onclick="set(this, 'mediumseagreen')"></div>
+              <div class="button sineF4" onclick="set(this, 'dodgerblue')"></div>
+              <div class="button sineG4" onclick="set(this, 'orange')"></div>
+              <div class="button sineA5" onclick="set(this, 'tomato')"></div> 
             </div>
             <div class="col">
               <div class="hiddenBox"></div>
-              <div class="button sineA3" onclick="set(this, 'mediumseagreen')">0</div>
-              <div class="button sineB3" onclick="set(this, 'dodgerblue')">1</div>
-              <div class="button sineC4" onclick="set(this, 'orange')">2</div>
-              <div class="button sineD4" onclick="set(this, 'tomato')">3</div>
-              <div class="button sineE4" onclick="set(this, 'mediumseagreen')">4</div>
-              <div class="button sineF4" onclick="set(this, 'dodgerblue')">5</div>
-              <div class="button sineG4" onclick="set(this, 'orange')">6</div>
-              <div class="button sineA5" onclick="set(this, 'tomato')">7</div> 
+              <div class="button sineA3" onclick="set(this, 'mediumseagreen')"></div>
+              <div class="button sineB3" onclick="set(this, 'dodgerblue')"></div>
+              <div class="button sineC4" onclick="set(this, 'orange')"></div>
+              <div class="button sineD4" onclick="set(this, 'tomato')"></div>
+              <div class="button sineE4" onclick="set(this, 'mediumseagreen')"></div>
+              <div class="button sineF4" onclick="set(this, 'dodgerblue')"></div>
+              <div class="button sineG4" onclick="set(this, 'orange')"></div>
+              <div class="button sineA5" onclick="set(this, 'tomato')"></div> 
             </div> 
             <div class="col">
               <div class="hiddenBox"></div>
-              <div class="button sineA3" onclick="set(this, 'mediumseagreen')">0</div>
-              <div class="button sineB3" onclick="set(this, 'dodgerblue')">1</div>
-              <div class="button sineC4" onclick="set(this, 'orange')">2</div>
-              <div class="button sineD4" onclick="set(this, 'tomato')">3</div>
-              <div class="button sineE4" onclick="set(this, 'mediumseagreen')">4</div>
-              <div class="button sineF4" onclick="set(this, 'dodgerblue')">5</div>
-              <div class="button sineG4" onclick="set(this, 'orange')">6</div>
-              <div class="button sineA5" onclick="set(this, 'tomato')">7</div> 
+              <div class="button sineA3" onclick="set(this, 'mediumseagreen')"></div>
+              <div class="button sineB3" onclick="set(this, 'dodgerblue')"></div>
+              <div class="button sineC4" onclick="set(this, 'orange')"></div>
+              <div class="button sineD4" onclick="set(this, 'tomato')"></div>
+              <div class="button sineE4" onclick="set(this, 'mediumseagreen')"></div>
+              <div class="button sineF4" onclick="set(this, 'dodgerblue')"></div>
+              <div class="button sineG4" onclick="set(this, 'orange')"></div>
+              <div class="button sineA5" onclick="set(this, 'tomato')"></div> 
             </div> 
             <div class="col">
               <div class="hiddenBox"></div>
-              <div class="button sineA3" onclick="set(this, 'mediumseagreen')">0</div>
-              <div class="button sineB3" onclick="set(this, 'dodgerblue')">1</div>
-              <div class="button sineC4" onclick="set(this, 'orange')">2</div>
-              <div class="button sineD4" onclick="set(this, 'tomato')">3</div>
-              <div class="button sineE4" onclick="set(this, 'mediumseagreen')">4</div>
-              <div class="button sineF4" onclick="set(this, 'dodgerblue')">5</div>
-              <div class="button sineG4" onclick="set(this, 'orange')">6</div>
-              <div class="button sineA5" onclick="set(this, 'tomato')">7</div> 
+              <div class="button sineA3" onclick="set(this, 'mediumseagreen')"></div>
+              <div class="button sineB3" onclick="set(this, 'dodgerblue')"></div>
+              <div class="button sineC4" onclick="set(this, 'orange')"></div>
+              <div class="button sineD4" onclick="set(this, 'tomato')"></div>
+              <div class="button sineE4" onclick="set(this, 'mediumseagreen')"></div>
+              <div class="button sineF4" onclick="set(this, 'dodgerblue')"></div>
+              <div class="button sineG4" onclick="set(this, 'orange')"></div>
+              <div class="button sineA5" onclick="set(this, 'tomato')"></div> 
             </div> 
             <div class="col">
               <div class="hiddenBox"></div>
-              <div class="button sineA3" onclick="set(this, 'mediumseagreen')">0</div>
-              <div class="button sineB3" onclick="set(this, 'dodgerblue')">1</div>
-              <div class="button sineC4" onclick="set(this, 'orange')">2</div>
-              <div class="button sineD4" onclick="set(this, 'tomato')">3</div>
-              <div class="button sineE4" onclick="set(this, 'mediumseagreen')">4</div>
-              <div class="button sineF4" onclick="set(this, 'dodgerblue')">5</div>
-              <div class="button sineG4" onclick="set(this, 'orange')">6</div>
-              <div class="button sineA5" onclick="set(this, 'tomato')">7</div> 
+              <div class="button sineA3" onclick="set(this, 'mediumseagreen')"></div>
+              <div class="button sineB3" onclick="set(this, 'dodgerblue')"></div>
+              <div class="button sineC4" onclick="set(this, 'orange')"></div>
+              <div class="button sineD4" onclick="set(this, 'tomato')"></div>
+              <div class="button sineE4" onclick="set(this, 'mediumseagreen')"></div>
+              <div class="button sineF4" onclick="set(this, 'dodgerblue')"></div>
+              <div class="button sineG4" onclick="set(this, 'orange')"></div>
+              <div class="button sineA5" onclick="set(this, 'tomato')"></div> 
             </div> 
             <div class="col">
               <div class="hiddenBox"></div>
-              <div class="button sineA3" onclick="set(this, 'mediumseagreen')">0</div>
-              <div class="button sineB3" onclick="set(this, 'dodgerblue')">1</div>
-              <div class="button sineC4" onclick="set(this, 'orange')">2</div>
-              <div class="button sineD4" onclick="set(this, 'tomato')">3</div>
-              <div class="button sineE4" onclick="set(this, 'mediumseagreen')">4</div>
-              <div class="button sineF4" onclick="set(this, 'dodgerblue')">5</div>
-              <div class="button sineG4" onclick="set(this, 'orange')">6</div>
-              <div class="button sineA5" onclick="set(this, 'tomato')">7</div> 
+              <div class="button sineA3" onclick="set(this, 'mediumseagreen')"></div>
+              <div class="button sineB3" onclick="set(this, 'dodgerblue')"></div>
+              <div class="button sineC4" onclick="set(this, 'orange')"></div>
+              <div class="button sineD4" onclick="set(this, 'tomato')"></div>
+              <div class="button sineE4" onclick="set(this, 'mediumseagreen')"></div>
+              <div class="button sineF4" onclick="set(this, 'dodgerblue')"></div>
+              <div class="button sineG4" onclick="set(this, 'orange')"></div>
+              <div class="button sineA5" onclick="set(this, 'tomato')"></div> 
             </div> 
             <div class="col">
               <div class="hiddenBox"></div>
-              <div class="button sineA3" onclick="set(this, 'mediumseagreen')">0</div>
-              <div class="button sineB3" onclick="set(this, 'dodgerblue')">1</div>
-              <div class="button sineC4" onclick="set(this, 'orange')">2</div>
-              <div class="button sineD4" onclick="set(this, 'tomato')">3</div>
-              <div class="button sineE4" onclick="set(this, 'mediumseagreen')">4</div>
-              <div class="button sineF4" onclick="set(this, 'dodgerblue')">5</div>
-              <div class="button sineG4" onclick="set(this, 'orange')">6</div>
-              <div class="button sineA5" onclick="set(this, 'tomato')">7</div> 
+              <div class="button sineA3" onclick="set(this, 'mediumseagreen')"></div>
+              <div class="button sineB3" onclick="set(this, 'dodgerblue')"></div>
+              <div class="button sineC4" onclick="set(this, 'orange')"></div>
+              <div class="button sineD4" onclick="set(this, 'tomato')"></div>
+              <div class="button sineE4" onclick="set(this, 'mediumseagreen')"></div>
+              <div class="button sineF4" onclick="set(this, 'dodgerblue')"></div>
+              <div class="button sineG4" onclick="set(this, 'orange')"></div>
+              <div class="button sineA5" onclick="set(this, 'tomato')"></div> 
             </div> 
             <div class="col">
               <div class="hiddenBox"></div>
-              <div class="button sineA3" onclick="set(this, 'mediumseagreen')">0</div>
-              <div class="button sineB3" onclick="set(this, 'dodgerblue')">1</div>
-              <div class="button sineC4" onclick="set(this, 'orange')">2</div>
-              <div class="button sineD4" onclick="set(this, 'tomato')">3</div>
-              <div class="button sineE4" onclick="set(this, 'mediumseagreen')">4</div>
-              <div class="button sineF4" onclick="set(this, 'dodgerblue')">5</div>
-              <div class="button sineG4" onclick="set(this, 'orange')">6</div>
-              <div class="button sineA5" onclick="set(this, 'tomato')">7</div> 
+              <div class="button sineA3" onclick="set(this, 'mediumseagreen')"></div>
+              <div class="button sineB3" onclick="set(this, 'dodgerblue')"></div>
+              <div class="button sineC4" onclick="set(this, 'orange')"></div>
+              <div class="button sineD4" onclick="set(this, 'tomato')"></div>
+              <div class="button sineE4" onclick="set(this, 'mediumseagreen')"></div>
+              <div class="button sineF4" onclick="set(this, 'dodgerblue')"></div>
+              <div class="button sineG4" onclick="set(this, 'orange')"></div>
+              <div class="button sineA5" onclick="set(this, 'tomato')"></div> 
             </div>    
           </div> 
         </div> 
       </div>
     </div>
-      
-      <footer class="page-footer font-small">
-        <div class="container-fluid">
-          <p>FOOTER text go here</p>
-        </div>
+      <footer class="page-footer">
+      <p>add fancy footer text</p>
+        
       </footer>
 
     <!-- Optional JavaScript -->

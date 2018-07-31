@@ -37,8 +37,8 @@ var is_recording = false;
 function record(){
   r = document.getElementById("rec");
   if(is_recording == false){
-    r.style.color = "purple";
-    r.innerHTML = "RECORDING";
+    r.style.color = "red";
+    r.innerHTML = "PAUSE";
     is_recording = true;
     mediaRecorder.start(tempoToMs());
     play();
@@ -48,7 +48,7 @@ function record(){
   else if(is_recording == true){
     endT();
     r.style.color = "orange";
-    r.innerHTML = "CONTINUE RECORDING";
+    r.innerHTML = "RESUME RECORDING";
     is_recording = false;
     clearInterval(clock);
     mediaRecorder.stop();
@@ -86,28 +86,6 @@ mediaRecorder.onstop = function(e){
   
 };
 
-//make this modular to support other presets
-
-var soundBuffer;
-var sound_url = './js/samples/kick1.wv';
-
-var request = new XMLHttpRequest();
-request.open("GET", sound_url, true);
-request.responseType = "arraybuffer";
-
-request.onload = function(){
-  context.decodeAudioData(request.response, function(buffer){
-    soundBuffer = buffer;
-  });
-};
-request.send();
-
-var kick = context.createBufferSource();
-kick.buffer = soundBuffer;
-
-
-
-
 //clean this up eventually..
 //as of now each call to this function creates and plays
 //an oscillator sound.
@@ -121,12 +99,13 @@ function playAudio(element){
   osc.type = "sine";
   
   if(element.classList.contains("sineA3")){
-    kick.connect(gain);
+    osc.frequency.value = 220.0;
+    osc.connect(gain);
     gain.connect(context.destination);
     gain.connect(song);
     gain.gain.linearRampToValueAtTime(1, context.currentTime + 0.005);
     gain.gain.linearRampToValueAtTime(0, context.currentTime + 0.5);
-    kick.start();
+    osc.start();
   }
   else if(element.classList.contains("sineB3")){
     osc.frequency.value = 246.9;
