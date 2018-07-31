@@ -3,8 +3,13 @@
         "sessions": {"validator": {
             "$jsonSchema": {
                 "bsonType": "object",
-                "required": ["name", "date", "start", "end", "users", "songs", "diskLocation"],
+                "required": ["__id", "name", "diskLocation"],
                 "properties": {
+                    "__id": {
+                        "bsonType": "objectId",
+                        "description": "UniqueId of the session. Required",
+                        "uniqueItems": true
+                    },
                     "name": {
                         "bsonType": "string",
                         "description": "Name of the session. Required"
@@ -39,8 +44,13 @@
         "songs": {"validator": {
             "$jsonSchema": {
                 "bsonType": "object", 
-                "required": ["name", "userId", "sessionId", "length"],
+                "required": ["__id", "name", "userId", "sessionId", "length"],
                 "properties": {
+                    "__id": {
+                        "bsonType": "objectId",
+                        "description": "UniqueId of the song. Required",
+                        "uniqueItems": true
+                    },
                     "name": {
                         "bsonType": "string",
                         "description": "Title of the song. Required"
@@ -63,8 +73,13 @@
         "users": {"validator": {
             "$jsonSchema": {
                 "bsonType": "object", 
-                "required": ["name", "password", "sessions", "songs"],
+                "required": ["__id", "name", "password", "sessions", "songs"],
                 "properties": {
+                    "__id": {
+                        "bsonType": "objectId",
+                        "description": "UniqueId of the user. Required",
+                        "uniqueItems": true
+                    },
                     "name": {
                         "bsonType": "string",
                         "description": "Name of the user. Required"
