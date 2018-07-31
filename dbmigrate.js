@@ -21,6 +21,17 @@ var session_1 = {
     diskLocation: __dirname + "routes/sessions/" + id.toHexString()   
 } 
 
+var song_id = new ObjectId();
+var user_id = new ObjectId("5b60da49a6f29cab1db9b27c");
+var song_1 = {
+    __id: id,
+    name: "testSession1",
+    userId: user_id,
+    sessionId: id,
+    length: 0.01
+} 
+console.log("SONG ID: " + song_id.toHexString())
+console.log("USER ID: " + user_id.toHexString())
 
 MongoClient.connect("mongodb://localhost:27017", function(err, client){
  	if(err){
@@ -49,6 +60,8 @@ MongoClient.connect("mongodb://localhost:27017", function(err, client){
         })
         
         db.collection('Sessions')
-            . insertOne(session_1);
+            .insertOne(session_1);
+        db.collection('Songs')
+            .insertOne(song_1);
  	}
  })
