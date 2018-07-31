@@ -8,6 +8,7 @@ const schemas = JSON.parse(fs.readFileSync('./schema.json', 'utf8')).schemas;
 global.appRoot = path.resolve(__dirname);
 
 app = express();
+app.locals.session_path = global.appRoot + "sessions/";
 
 /* collections  */
 const liveCollections = ["Users", "Sessions", "Songs"];
@@ -73,7 +74,7 @@ MongoClient.connect("mongodb://localhost:27017", function(err, client){
                 }
             }   
         })
-
+        
  		app.listen(3000, () => { console.log(" App Listening on Port 3000 ") }); 
  	}
  })
