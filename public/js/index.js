@@ -90,6 +90,8 @@ mediaRecorder.onstop = function(e){
 
   */
 
+  document.getElementById("upload").src = URL.createObjectURL(blob);
+
 
 };
 
