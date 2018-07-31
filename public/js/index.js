@@ -16,7 +16,10 @@ function tempoToMs(){
   var bpm = tempo;
   var ms = 0;
   if(bpm <= 0){
-    alert("That's quite a low tempo.");
+    document.getElementById("tempo").value = "60";
+    bpm = 60;
+    ms = 60000/bpm;
+    confirm("User tempo was too low, new tempo set to 60.");
   }
   else{
     ms = 60000/bpm;
