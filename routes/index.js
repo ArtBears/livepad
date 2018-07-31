@@ -48,7 +48,7 @@ router.get('/session/:session_id', (req, res, next) => {
 router.post('/session/new/:name/:user/:start/:end', (req, res, next) => {
 	// create a session in the DB
 	let id = new ObjectId();
-	let dir = createDir(id);
+	let dir = createDir(id.toHexString());
 	req.db.collection('Sessions')
 		.insertOne(
 			{
@@ -68,7 +68,7 @@ router.post('/session/new/:name/:user/:start/:end', (req, res, next) => {
 				res.send("problem saving document");
 			}
 			else {
-				let session_path = "/session/" + id;
+				let session_path = "/session/" + id.toHexString();
 				res.redirect(200, session_path);
 			}
 		})
