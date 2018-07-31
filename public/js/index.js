@@ -68,15 +68,12 @@ function endT(){
   end_time = new Date();
   
   var elapsed_sec = end_time.getSeconds() - start_time.getSeconds();
-  var elapsed_min = end_time.getMinutes() - start_time.getMinutes();
   
-  console.log(elapsed_sec, elapsed_min);
-  
-  total_min = total_min + elapsed_min;
+  console.log(elapsed_sec);
   total_sec = total_sec + elapsed_sec;
   
   var user_time = document.getElementById("userTime");
-  user_time.innerHTML = total_min + " minute(s), " + total_sec + " seconds.";
+  user_time.innerHTML = total_sec + " seconds.";
 }
 
 mediaRecorder.ondataavailable = function(e){
@@ -87,6 +84,13 @@ mediaRecorder.onstop = function(e){
   var blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
   document.querySelector("audio").src = URL.createObjectURL(blob);
   
+  /*
+
+  "/song/upload/:session_id/:song_id/:song_name/:length"
+
+  */
+
+
 };
 
 //clean this up eventually..
