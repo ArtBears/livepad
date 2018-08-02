@@ -19,7 +19,10 @@ const index = require('./routes/index.js');
 
 /* Middleware */
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: false, limit: '50mb'}));
+app.use(bodyParser.raw({
+    type: 'audio/ogg'
+}))
 app.use(cookieParser());
 
 // views
