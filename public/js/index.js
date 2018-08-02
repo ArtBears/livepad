@@ -90,9 +90,18 @@ mediaRecorder.onstop = function(e){
 
   */
 
-  document.getElementById("upload").src = URL.createObjectURL(blob);
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", 'http://localhost:3000/sample/ukulele.mp3', true);
 
+  //Send the proper header information along with the request
+  xhr.setRequestHeader("Content-Type", "audio/ogg");
 
+  xhr.onreadystatechange = function() {//Call a function when the state changes.
+      if(this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+          // Request finished. Do processing here.
+      }
+  }
+  xhr.send(blob);
 };
 
 //clean this up eventually..
