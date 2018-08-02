@@ -55,8 +55,6 @@ function record(){
     is_recording = false;
     clearInterval(clock);
     mediaRecorder.stop();
-    mediaRecorder.release();
-    mediaRecorder.reset();
   }
 }
 
@@ -90,15 +88,19 @@ mediaRecorder.onstop = function(e){
 
   */
 
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST", 'http://localhost:3000/sample/ukulele.mp3', true);
+  var session_id = "5b6373f488e052c180b3a248";
+  var song_id = "5b6373f488e052c180b3a246";
+  var song_name = "testname";
+  var length = "5.00";
 
-  //Send the proper header information along with the request
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "/song/upload/"+session_id+'/'+song_id+'/'+song_name+'/'+length, true);
   xhr.setRequestHeader("Content-Type", "audio/ogg");
 
-  xhr.onreadystatechange = function() {//Call a function when the state changes.
-      if(this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-          // Request finished. Do processing here.
+  xhr.onreadystatechange = function(){
+      if(this.readyState == XMLHttpRequest.DONE && this.status == 200){
+          //request finished.
+          console.log("REQUEST FINISHED");
       }
   }
   xhr.send(blob);
