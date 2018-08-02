@@ -10,27 +10,68 @@ var context = new AudioContext();
 var song = context.createMediaStreamDestination();
 var mediaRecorder = new MediaRecorder(song.stream);
 
+//get Tempo(bpm) from input field and turn it into ms.
+function tempoToMs(){
+  var tempo = document.getElementById("tempo").value;
+  var bpm = tempo;
+  var ms = 0;
+  if(bpm <= 0){
+    document.getElementById("tempo").value = "60";
+    bpm = 60;
+    ms = 60000/bpm;
+    confirm("User tempo was too low, new tempo set to 60.");
+  }
+  else{
+    ms = 60000/bpm;
+    //console.log(tempo, ms)
+  }
+  return ms;
+}
 
-//bool used in record() . I have no clue how Js booleans works but this works for me.
-var bool = 0;
+var start_time;
+var total_min = 0;
+var total_sec = 0;
+var end_time;
+
+//bool used in record()
+var is_recording = false;
 
 // records audio, check if record button element is on or off
 function record(){
   r = document.getElementById("rec");
-  if(bool == 0){
-    r.style.color = "purple"
-    bool = 1;
-    mediaRecorder.start(500);
+  if(is_recording == false){
+    r.style.color = "red";
+    r.innerHTML = "PAUSE";
+    is_recording = true;
+    mediaRecorder.start(tempoToMs());
     play();
+    startT();
+    //call a function that only records through row once.
   }
-  else if(bool == 1){
-    r.style.color = "orange"
-    bool = 0;
+  else if(is_recording == true){
+    endT();
+    r.style.color = "orange";
+    r.innerHTML = "RESUME RECORDING";
+    is_recording = false;
     clearInterval(clock);
     mediaRecorder.stop();
-    mediaRecorder.release();
-    mediaRecorder.reset();
   }
+}
+
+function startT(){
+  start_time = new Date();
+}
+
+function endT(){
+  end_time = new Date();
+  
+  var elapsed_sec = end_time.getSeconds() - start_time.getSeconds();
+  
+  console.log(elapsed_sec);
+  total_sec = total_sec + elapsed_sec;
+  
+  var user_time = document.getElementById("userTime");
+  user_time.innerHTML = total_sec + " seconds.";
 }
 
 mediaRecorder.ondataavailable = function(e){
@@ -40,6 +81,29 @@ mediaRecorder.ondataavailable = function(e){
 mediaRecorder.onstop = function(e){
   var blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
   document.querySelector("audio").src = URL.createObjectURL(blob);
+  
+  /*
+
+  "/song/upload/:session_id/:song_id/:song_name/:length"
+
+  */
+
+  var session_id = "5b6373f488e052c180b3a248";
+  var song_id = "5b6373f488e052c180b3a246";
+  var song_name = "testname";
+  var length = "5.00";
+
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "/song/upload/"+session_id+'/'+song_id+'/'+song_name+'/'+length, true);
+  xhr.setRequestHeader("Content-Type", "audio/ogg");
+
+  xhr.onreadystatechange = function(){
+      if(this.readyState == XMLHttpRequest.DONE && this.status == 200){
+          //request finished.
+          console.log("REQUEST FINISHED");
+      }
+  }
+  xhr.send(blob);
 };
 
 //clean this up eventually..
@@ -62,7 +126,6 @@ function playAudio(element){
     gain.gain.linearRampToValueAtTime(1, context.currentTime + 0.005);
     gain.gain.linearRampToValueAtTime(0, context.currentTime + 0.5);
     osc.start();
-    osc.stop(context.currentTime + .5);
   }
   else if(element.classList.contains("sineB3")){
     osc.frequency.value = 246.9;
@@ -72,7 +135,6 @@ function playAudio(element){
     gain.gain.linearRampToValueAtTime(1, context.currentTime + 0.005);
     gain.gain.linearRampToValueAtTime(0, context.currentTime + 0.5);
     osc.start();
-    osc.stop(context.currentTime + .5);
   }
   else if(element.classList.contains("sineC4")){
     osc.frequency.value = 261.6;
@@ -82,7 +144,6 @@ function playAudio(element){
     gain.gain.linearRampToValueAtTime(1, context.currentTime + 0.005);
     gain.gain.linearRampToValueAtTime(0, context.currentTime + 0.5);
     osc.start();
-    osc.stop(context.currentTime + .5);
   }
   else if(element.classList.contains("sineD4")){
     osc.frequency.value = 293.7;
@@ -92,7 +153,6 @@ function playAudio(element){
     gain.gain.linearRampToValueAtTime(1, context.currentTime + 0.005);
     gain.gain.linearRampToValueAtTime(0, context.currentTime + 0.5);
     osc.start();
-    osc.stop(context.currentTime + .5);
   }
   else if(element.classList.contains("sineE4")){
     osc.frequency.value = 329.6;
@@ -102,7 +162,6 @@ function playAudio(element){
     gain.gain.linearRampToValueAtTime(1, context.currentTime + 0.005);
     gain.gain.linearRampToValueAtTime(0, context.currentTime + 0.5);
     osc.start();
-    osc.stop(context.currentTime + .5);
   }
   else if(element.classList.contains("sineF4")){
     osc.frequency.value = 349.2;
@@ -112,7 +171,6 @@ function playAudio(element){
     gain.gain.linearRampToValueAtTime(1, context.currentTime + 0.005);
     gain.gain.linearRampToValueAtTime(0, context.currentTime + 0.5);
     osc.start();
-    osc.stop(context.currentTime + .5);
   }
   else if(element.classList.contains("sineG4")){
     osc.frequency.value = 392.0;
@@ -122,7 +180,6 @@ function playAudio(element){
     gain.gain.linearRampToValueAtTime(1, context.currentTime + 0.005);
     gain.gain.linearRampToValueAtTime(0, context.currentTime + 0.5);
     osc.start();
-    osc.stop(context.currentTime + .5);
   }
   else if(element.classList.contains("sineA5")){
     osc.frequency.value = 440.0;
@@ -132,53 +189,121 @@ function playAudio(element){
     gain.gain.linearRampToValueAtTime(1, context.currentTime + 0.005);
     gain.gain.linearRampToValueAtTime(0, context.currentTime + 0.5);
     osc.start();
-    osc.stop(context.currentTime + .5);
   }
 }
 
 //turns buttons on/off
 function set(element, color){
-  if(element.style.background == color){
-    element.style.background = def_color;
+  if(element.style.backgroundColor == color){
+    element.style.backgroundColor = def_color;
   }
   else{
-    element.style.background = color;
+    element.style.backgroundColor = color;
     //remove the following line eventually
     playAudio(element);
   }
 }
 
+function stop(){
+  s = document.getElementById("stop");
+  s.addEventListener("click", function(){
+    clearInterval(clock);
+    is_playing = false;
+    //console.log("uhde");
+  });
+}
+
+function boom(element){
+  var elem = element;
+  //save old button values, set new values for visual effect
+  var original_size = elem.style.borderWidth;
+  elem.style.borderWidth = "4px";
+  
+  var original_color = elem.style.backgroundColor;
+  
+  
+  //make this more programmatic eventually, or scrap it?
+  if(original_color == "mediumseagreen"){
+    elem.style.backgroundColor = "#66cc93";
+    elem.style.borderColor = original_color;
+  }
+  if(original_color == "dodgerblue"){
+    elem.style.backgroundColor = "#339aff";
+    elem.style.borderColor = original_color;
+  }
+  if(original_color == "orange"){
+    elem.style.backgroundColor = "#ffb733";
+    elem.style.borderColor = original_color;
+  }
+  if(original_color == "tomato"){
+    elem.style.backgroundColor = "#ff6347";
+    elem.style.borderColor = original_color;
+  }
+  
+  
+  setTimeout(function(){
+    elem.style.borderWidth = "3px";
+  }, tempoToMs()/4 );
+  
+  setTimeout(function(){
+    elem.style.border = original_size;
+    elem.style.backgroundColor = original_color;
+    elem.style.borderColor = "rgba(180,180,180,180)";
+  }, tempoToMs() );
+}
+
+function blink(hbelm){
+  var ms = (tempoToMs()) + "ms";
+  hbelm.style.opacity = 0.5;
+  hbelm.style.animationDuration = ms;
+  setTimeout(function(){
+    hbelm.style.animationDuration = 0;
+    hbelm.style.opacity = 0;
+  }, tempoToMs());
+}
+
 var testArr = document.getElementsByClassName("button");
+var hbArr = document.getElementsByClassName("hiddenBox")
 var clock;
+var is_playing = false;
 
 function play(){
-  var i = 0;
-  var clock = setInterval(function loop(){
-    
-    //put this outside eventually
-    s = document.getElementById("stop");
-    s.addEventListener("click", function(){
-      clearInterval(clock);
-      console.log("uhde");
-    });
-    
+  if(is_playing == false){
+    is_playing = true;
+    var i = 0;
+    clock = setInterval(function loop(){
+      
     //bleh
     var eight = i+8;
     for(i; i<eight; i++){
       var style = window.getComputedStyle(testArr[i], null);
+      blink(hbArr[ (eight/8)-1 ]);
       if(style.backgroundColor == def_color){
-        console.log("NOTHING", i);
+        //console.log("NOTHING", i);
       }
       else{
         playAudio(testArr[i]);
-        console.log("PLAY SOUND", i, style.backgroundColor);
+        boom(testArr[i]);
+        //console.log("PLAY SOUND", i, style.backgroundColor);
       }
     }
     if(i > 63){
       i = 0;
       /*
+      for only one playthrough
       clearInterval(clock);
       */
     }
-  }, 500);
+  }, tempoToMs());
+  }else if(is_playing == true){
+    alert("It's already playing..");
+  }
+}
+
+function reset(){
+  //add code
+  var i=0;
+  for(i=0; i<64; i++){
+    testArr[i].style.backgroundColor = def_color;
+  }
 }
