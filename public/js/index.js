@@ -91,7 +91,7 @@ mediaRecorder.onstop = function(e){
   var session_id = "5b6373f488e052c180b3a248";
   var song_id = "5b6373f488e052c180b3a246";
   var song_name = "testname";
-  var length = "5.00";
+  var length = "5";
 
   var xhr = new XMLHttpRequest();
   xhr.open("POST", "/song/upload/"+session_id+'/'+song_id+'/'+song_name+'/'+length, true);
