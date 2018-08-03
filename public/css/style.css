@@ -2,42 +2,78 @@ html,
 body {
   height: 100%;
   width: 100%;
-  background: linear-gradient(to bottom right, #222222, #111111);
+  background: linear-gradient(to bottom right, mediumseagreen, dodgerblue, tomato);
+}
+
+.navbar-custom{
+  background-color: #12130F;
+  opacity: 0.6;
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text{
+  color: white;
+}
+
+.navbar-custom .navbar-nav .nav-link {
+    color: #888888;
+}
+
+.navbar-custom .nav-item.active .nav-link,
+.navbar-custom .nav-item:hover .nav-link {
+    color: #ffffff;
 }
 
 .site-wrapper{
-  margin-left: 2rem;
-  margin-right: 2rem;
 }
 
-.jumbotron-fluid{
-  color: #077BEF;
-  text-align: center;
-  background: #084787;
+.audio{
+  height: 10px;
 }
 
 .page-header{
   color: white;
-  background: #444444;
-  padding-top: 8px;
-  padding-bottom: 8px;
+  background: #12130F;
   text-align: center;
 }
 
 .container{
-  background: dodgerblue;
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding-top: 80px;
+  height: 50%;
+  width: 100%;
 }
+
+.hiddenBox{
+  pointer-events: none;
+  position: absolute;
+  opacity: 0;
+  max-width: 50px;
+  height: 348px;
+  width: 40px;
+  margin-left: 4px;
+  margin-right: 4px;
+  margin-top: 4px;
+  border-radius: 5px;
+  animation-name: neat;
+  animation-duration: 0;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes neat{
+  0%{
+    box-shadow: 0px 0px 5px 1px white;
+  }
+  100%{
+    box-shadow: 0px 0px 5px 3px white;
+  }
+}
+
 
 .padcontainer{
   background: #111111;
-  max-width: 400px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  border: 1px solid #white;
-  border: 1px solid rgba(180,180,180,180);
-  border-radius: 5px;
+  
 }
 
 .row{
@@ -56,18 +92,52 @@ body {
   color: green;
   cursor: crosshair;
   background: #222222;
+  text-align: center;
 }
 
 .stopBn{
-  color: red;
+  color: black;
   cursor: cell;
   background: #333333;
+  text-align: center;
 }
 
 .recBn{
-  color: orange;
+  color: red;
   cursor: help;
   background: #444444;
+  text-align: center;
+}
+
+.settingsBx{
+  color: white;
+  cursor: pointer;
+  margin-top: 90px;
+}
+
+.clearBn{
+  color: white;
+  cursor: pointer;
+  background: red;
+  margin-top: 70px;
+}
+
+no-spinners {
+-moz-appearance:textfield;
+}
+
+.no-spinners::-webkit-outer-spin-button,
+.no-spinners::-webkit-inner-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+
+input[type=number]{
+  width: 100%;
+  border: none;
+  cursor: text;
+  border-bottom: 2px solid grey;
+  text-align: center;
 }
 
 .button{
@@ -79,17 +149,29 @@ body {
   margin-right: 4px;
   padding-top: 5px;
   padding-bottom: 5px;
-  border: 1px solid #white;
-  border: 1px solid rgba(180,180,180,180);
+  border: 2px solid rgba(180,180,180,180);
   border-radius: 5px;
+  border-style: outset;
   color: white;
   background: #888888;
+  background-radius: 5px;
+  background-color: #888888;
+  backgroundColor: #888888;
   text-align: center;
   cursor: pointer;
 }
 
+.button:hover{
+  border-style: inset;
+}
+
 .page-footer{
   color: white;
-  background: #077BEF;
+  background: #12130F;
   text-align: center;
+  position: fixed;
+  bottom: 0px;
+  height: 20px;
+  width: 100%;
+  opacity: 0.85;
 }
