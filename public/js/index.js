@@ -87,23 +87,19 @@ mediaRecorder.onstop = function(e){
   "/song/upload/:session_id/:song_id/:song_name/:length"
 
   */
-
   var session_id = "5b6373f488e052c180b3a248";
   var song_id = "5b6373f488e052c180b3a246";
   var song_name = "testname";
   var length = "5";
 
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST", "/song/upload/"+session_id+'/'+song_id+'/'+song_name+'/'+length, true);
-  xhr.setRequestHeader("Content-Type", "audio/ogg");
+  var fd = new FormData();
+  fd.append('acorn', blob, song_name + ".ogg");
+  fetch("/song/upload/"+session_id+'/'+song_id+'/'+song_name+'/'+length, 
+  {
+    method: 'post',
+    body: fd
+  });
 
-  xhr.onreadystatechange = function(){
-      if(this.readyState == XMLHttpRequest.DONE && this.status == 200){
-          //request finished.
-          console.log("REQUEST FINISHED");
-      }
-  }
-  xhr.send(blob);
 };
 
 //clean this up eventually..

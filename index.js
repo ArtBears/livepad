@@ -9,7 +9,7 @@ const schemas = JSON.parse(fs.readFileSync('./schema.json', 'utf8')).schemas;
 global.appRoot = path.resolve(__dirname);
 
 app = express();
-app.locals.session_path = global.appRoot + "sessions/";
+app.locals.session_path = global.appRoot + "/sessions/";
 
 /* collections  */
 const liveCollections = ["Users", "Sessions", "Songs"];

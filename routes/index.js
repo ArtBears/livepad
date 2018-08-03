@@ -4,6 +4,14 @@ var mongo = require('mongodb');
 var ObjectId = require('mongodb').ObjectId;
 var path  = require('path');
 var fs = require('fs');
+var multer = require('multer');
+var storage = multer.diskStorage({
+	destination: app.locals.session_path,
+	filename: function(req, file, cb){
+		cb(null, req.params.song_name + '-' + Date.now() + ".ogg")
+	}
+})
+var upload = multer({storage: storage});
 
 router.get('/', (req, res, next) => {
 	res.render('index');
@@ -78,35 +86,74 @@ router.post('/session/new/:name/:user/:start/:end', (req, res, next) => {
 router.get('/session/createSong/:session_id/:user_id', (req, res, next) => {
 	// generate a song ID
 	// save the record of the song/session/user
-	req.db.collection('Sessions')
-						.updateOne( {__id: req.params.session_id},
-									{})
+	let id = new ObjectId();
+	let temp_song_name = req.params.session_id + "-" + req.params.user_id;
+	req.db
+		.collection('Songs')
+			.insertOne({
+				__id: id,
+				name: temp_song_name,
+				userId: req.params.user_id,
+				sessionId: req.params.sessionId,
+				length: 0.00
+			})
+			.next( (err, doc) => {
+				if(err){
+					console.log("Problem Making Song");
+					res.redirect(304, "/session/" + req.params.session_id);
+				}
+				else {
+					console.log("Saving to Sessions DB");
+					req.db
+						.collection('Sessions')
+							.updateOne( {__id: req.params.session_id},
+										{$push: {songs: id} }) // id is ObjectId("24ByteHexCode")
+							.next( (err, sess) => {
+								if(err){
+									console.log("Problem Saving Song to Session");
+									res.send(304, "/session/" + req.params.session_id);
+								}
+								else{
+									res.render('createSong');
+								}
+							})
+				}
+			})
+	
 });
 
-router.post('/song/upload/:session_id/:song_id/:song_name/:length', (req, res, next) => {
+router.post('/song/upload/:session_id/:song_id/:song_name/:length', upload.single('acorn'), function(req, res, next) {
 	// save song to file system
 	// update properties: length, name
 	// req is a stream bro
-	req.on('end', (data) => {
-		req.db.collection('Songs')
-			.updateOne(	{__id: req.params.song_id},
-						{name: req.params.song_name,
-						 length: req.params.length}
-			)
-			.next((err, doc) => {
-				if(err){
-					// do some stuff
-				}
-				if(doc.result == 'ok'){
-					saveToDir(app.locals.session_path, 
-								req.params.song_name,
-								data
-					);
-					res.redirect(200, "/session/"+ req.params.session_id);
-				}
-			})
-	})
+	req.db.collection('Songs')
+		.updateOne(	{__id: req.params.song_id},
+					{name: req.params.song_name,
+					 length: req.params.length}
+		)
+		.next((err, doc) => {
+			if(err){
+				 //do some stuff
+			}
+			if(doc.result == 'ok'){
+				res.redirect(200, "/session/"+ req.params.session_id);
+			}
+		})
+
+
+
+	console.log(req.file);
+	res.sendStatus(201);
 });
+
+router.post('/song/upload/test/:song_name', upload.single('acorn'), (req, res, next) => {
+	console.log(req.file);
+	res.sendStatus(200);
+})
+
+router.get('/session/listen/:session_id', (req, res, next) => {
+	res.render('listen')
+})
 
 function createDir(id){/* return string of rel location */
 	let path = app.locals.session_path + id; 
@@ -119,15 +166,20 @@ function createDir(id){/* return string of rel location */
 function saveToDir(dir, name, file){
 	let path = app.locals.session_path + dir;
 	let song_path = path + '/' + name
+	console.log("Saving to: " + song_path);
 	if(fs.existsSync(path)){
+		console.log("Writing File");
 		fs.writeFile(song_path, file);
 		return song_path;
 	} else {
 		fs.mkdirSync(path, (err) => {
+			console.log("Creating Directory " + path);
 			if(err == null){
+				console.log("Writing and Dir Create")
 				fs.writeFileSync(song_path, file);
 			}
 			else {
+				console.log("An error occured after MKWR")
 				return err;
 			}
 		});
