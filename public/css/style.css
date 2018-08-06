@@ -6,6 +6,7 @@ body {
 }
 
 .navbar-custom{
+  border-opacity: 1;
   background-color: #12130F;
   opacity: 0.6;
 }
@@ -13,6 +14,11 @@ body {
 .navbar-custom .navbar-brand,
 .navbar-custom .navbar-text{
   color: white;
+}
+
+.navbar-brand{
+  width: 100%;
+  text-align: center;
 }
 
 .navbar-custom .navbar-nav .nav-link {
@@ -107,6 +113,15 @@ body {
   cursor: help;
   background: #444444;
   text-align: center;
+}
+
+.uploadBn{
+  color: dodgerblue;
+  cursor: pointer;
+  background: #111111;
+  text-align: center;
+  border-bottom: 2px solid dodgerblue;
+  border-top: 2px solid dodgerblue;
 }
 
 .settingsBx{

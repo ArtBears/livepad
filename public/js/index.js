@@ -34,28 +34,58 @@ var total_sec = 0;
 var end_time;
 
 //bool used in record()
-var is_recording = false;
-
-// records audio, check if record button element is on or off
+//records audio, check if record button element is on or off
+var state = mediaRecorder.state;
+function record(){
+  r = document.getElementById("rec");
+  var state = mediaRecorder.state;
+  if(state == 'inactive'){
+  	r.style.color = "red";
+  	r.innerHTML = "PAUSE";
+  	mediaRecorder.start();
+  	play();
+  }
+  else if(state == 'recording'){
+  	r.style.color = "orange";
+    r.innerHTML = "RESUME RECORDING";
+    mediaRecorder.pause();
+    clearInterval(clock);
+  }
+  else if(state == 'paused'){
+  	r.style.color = "orange";
+    r.innerHTML = "there should be sound";
+  	play();
+    mediaRecorder.resume();
+  }
+}
+/*
 function record(){
   r = document.getElementById("rec");
   if(is_recording == false){
     r.style.color = "red";
     r.innerHTML = "PAUSE";
     is_recording = true;
-    mediaRecorder.start(tempoToMs());
+    if(state == "inactive"){
+    	mediaRecorder.start(tempoToMs());
+    }
+    else if(state == "paused"){
+    	mediaRecorder.resume();
+    }
     play();
-    startT();
     //call a function that only records through row once.
   }
   else if(is_recording == true){
-    endT();
     r.style.color = "orange";
     r.innerHTML = "RESUME RECORDING";
     is_recording = false;
     clearInterval(clock);
-    mediaRecorder.stop();
+    mediaRecorder.pause();
   }
+}
+*/
+
+function upload(){
+	mediaRecorder.stop();
 }
 
 function startT(){
@@ -227,11 +257,11 @@ function blink(hbelm){
 var testArr = document.getElementsByClassName("button");
 var hbArr = document.getElementsByClassName("hiddenBox")
 var clock;
-var is_playing = false;
+//var is_playing = false;
 
 function play(){
-  if(is_playing == false){
-    is_playing = true;
+  //if(is_playing == false){
+    //is_playing = true;
     var i = 0;
     clock = setInterval(function loop(){
       
@@ -250,16 +280,20 @@ function play(){
       }
     }
     if(i > 63){
-      i = 0;
-      /*
-      for only one playthrough
-      clearInterval(clock);
-      */
-    }
-  }, tempoToMs());
-  }else if(is_playing == true){
-    alert("It's already playing..");
-  }
+    	var state = mediaRecorder.state;
+    	i = 0;
+    	if(state == 'recording'){
+    		r = document.getElementById("rec");
+	      	r.style.color = "orange";
+	    	r.innerHTML = "RESUME RECORDING";
+	    	mediaRecorder.pause();
+	    	clearInterval(clock);
+	    }
+	}
+}, tempoToMs());
+  //}else if(is_playing == true){
+   // alert("It's already playing..");
+  //}
 }
 
 function reset(){
