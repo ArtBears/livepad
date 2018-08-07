@@ -12,137 +12,43 @@
     <title>Capstone</title>
   </head>
   <body>
-    <footer class="site-wrapper">
-      <nav class="navbar navbar-custom navbar-expand nav-justified">
+    <nav class="navbar navbar-custom navbar-expand nav-justified">
       <a class="navbar-brand" href="#">Capstone</a>
     </nav>
-      <div class="page-header">
-        <audio controls id="HELP"></audio>
+    
+    <div class="container-fluid">
+      <br><br><br>
+      <div class="row rowcustom justify-content-center align-self-center">
+        <div class="col-6">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </div>
+      </div>
+      <br><br>
+      <div class="row rowcustom justify-content-center align-self-center">
+        <div class="col-6">
+          <a class="btn btn-block btn-outline-success" href='/login' role="button">Login</a>
+        </div>
+      </div>
+      <div class="row rowcustom justify-content-center align-self-center">
+        <div class="col-6">
+          <a class="btn btn-block btn-outline-danger" href="/signup" role="button">Sign up</a>
+        </div>
       </div>
 
-      <div class="container align-self-center">
-        <div class="row align-items-stretch justify-content-center">
-          <div class="col-xs-6 text-center order-3">
-            <div class="playBn" onclick="play()">PLAY</div>
-            <div class="stopBn" onclick="stop()" id="stop">STOP</div>
-            <div class="recBn" onclick="record()" id="rec">RECORD</div>
-            <div class ="settingsBx">
-              <form>
-                <label for="tempo">Tempo</label>
-                <input type="number" id="tempo" name="tempo" value="80" class="no-spinners"</input>
-              </form>
-            </div>
-            <div class="clearBn" onclick="reset()">clear</div>
-          </div>
+    
+    <footer class="page-footer">
+      <p>add relevant footer text</p>
         
-        <div class="padcontainer" id="livepad">
-          <div class="row no-gutters">
-            <div class="col">
-              <div class="hiddenBox"></div>
-              <div class="button sineA3" onclick="set(this, 'mediumseagreen')"></div>
-              <div class="button sineB3" onclick="set(this, 'dodgerblue')"></div>
-              <div class="button sineC4" onclick="set(this, 'orange')"></div>
-              <div class="button sineD4" onclick="set(this, 'tomato')"></div>
-              <div class="button sineE4" onclick="set(this, 'mediumseagreen')"></div>
-              <div class="button sineF4" onclick="set(this, 'dodgerblue')"></div>
-              <div class="button sineG4" onclick="set(this, 'orange')"></div>
-              <div class="button sineA5" onclick="set(this, 'tomato')"></div> 
-            </div>
-            <div class="col">
-              <div class="hiddenBox"></div>
-              <div class="button sineA3" onclick="set(this, 'mediumseagreen')"></div>
-              <div class="button sineB3" onclick="set(this, 'dodgerblue')"></div>
-              <div class="button sineC4" onclick="set(this, 'orange')"></div>
-              <div class="button sineD4" onclick="set(this, 'tomato')"></div>
-              <div class="button sineE4" onclick="set(this, 'mediumseagreen')"></div>
-              <div class="button sineF4" onclick="set(this, 'dodgerblue')"></div>
-              <div class="button sineG4" onclick="set(this, 'orange')"></div>
-              <div class="button sineA5" onclick="set(this, 'tomato')"></div> 
-            </div> 
-            <div class="col">
-              <div class="hiddenBox"></div>
-              <div class="button sineA3" onclick="set(this, 'mediumseagreen')"></div>
-              <div class="button sineB3" onclick="set(this, 'dodgerblue')"></div>
-              <div class="button sineC4" onclick="set(this, 'orange')"></div>
-              <div class="button sineD4" onclick="set(this, 'tomato')"></div>
-              <div class="button sineE4" onclick="set(this, 'mediumseagreen')"></div>
-              <div class="button sineF4" onclick="set(this, 'dodgerblue')"></div>
-              <div class="button sineG4" onclick="set(this, 'orange')"></div>
-              <div class="button sineA5" onclick="set(this, 'tomato')"></div> 
-            </div> 
-            <div class="col">
-              <div class="hiddenBox"></div>
-              <div class="button sineA3" onclick="set(this, 'mediumseagreen')"></div>
-              <div class="button sineB3" onclick="set(this, 'dodgerblue')"></div>
-              <div class="button sineC4" onclick="set(this, 'orange')"></div>
-              <div class="button sineD4" onclick="set(this, 'tomato')"></div>
-              <div class="button sineE4" onclick="set(this, 'mediumseagreen')"></div>
-              <div class="button sineF4" onclick="set(this, 'dodgerblue')"></div>
-              <div class="button sineG4" onclick="set(this, 'orange')"></div>
-              <div class="button sineA5" onclick="set(this, 'tomato')"></div> 
-            </div> 
-            <div class="col">
-              <div class="hiddenBox"></div>
-              <div class="button sineA3" onclick="set(this, 'mediumseagreen')"></div>
-              <div class="button sineB3" onclick="set(this, 'dodgerblue')"></div>
-              <div class="button sineC4" onclick="set(this, 'orange')"></div>
-              <div class="button sineD4" onclick="set(this, 'tomato')"></div>
-              <div class="button sineE4" onclick="set(this, 'mediumseagreen')"></div>
-              <div class="button sineF4" onclick="set(this, 'dodgerblue')"></div>
-              <div class="button sineG4" onclick="set(this, 'orange')"></div>
-              <div class="button sineA5" onclick="set(this, 'tomato')"></div> 
-            </div> 
-            <div class="col">
-              <div class="hiddenBox"></div>
-              <div class="button sineA3" onclick="set(this, 'mediumseagreen')"></div>
-              <div class="button sineB3" onclick="set(this, 'dodgerblue')"></div>
-              <div class="button sineC4" onclick="set(this, 'orange')"></div>
-              <div class="button sineD4" onclick="set(this, 'tomato')"></div>
-              <div class="button sineE4" onclick="set(this, 'mediumseagreen')"></div>
-              <div class="button sineF4" onclick="set(this, 'dodgerblue')"></div>
-              <div class="button sineG4" onclick="set(this, 'orange')"></div>
-              <div class="button sineA5" onclick="set(this, 'tomato')"></div> 
-            </div> 
-            <div class="col">
-              <div class="hiddenBox"></div>
-              <div class="button sineA3" onclick="set(this, 'mediumseagreen')"></div>
-              <div class="button sineB3" onclick="set(this, 'dodgerblue')"></div>
-              <div class="button sineC4" onclick="set(this, 'orange')"></div>
-              <div class="button sineD4" onclick="set(this, 'tomato')"></div>
-              <div class="button sineE4" onclick="set(this, 'mediumseagreen')"></div>
-              <div class="button sineF4" onclick="set(this, 'dodgerblue')"></div>
-              <div class="button sineG4" onclick="set(this, 'orange')"></div>
-              <div class="button sineA5" onclick="set(this, 'tomato')"></div> 
-            </div> 
-            <div class="col">
-              <div class="hiddenBox"></div>
-              <div class="button sineA3" onclick="set(this, 'mediumseagreen')"></div>
-              <div class="button sineB3" onclick="set(this, 'dodgerblue')"></div>
-              <div class="button sineC4" onclick="set(this, 'orange')"></div>
-              <div class="button sineD4" onclick="set(this, 'tomato')"></div>
-              <div class="button sineE4" onclick="set(this, 'mediumseagreen')"></div>
-              <div class="button sineF4" onclick="set(this, 'dodgerblue')"></div>
-              <div class="button sineG4" onclick="set(this, 'orange')"></div>
-              <div class="button sineA5" onclick="set(this, 'tomato')"></div> 
-            </div>    
-          </div>
-        </div> 
-      </div>
-        <div class="row align-items-stretch justify-content-center">
-          <div class="uploadBn" onclick="upload()" id="upload">UPLOAD</div>
-        </div>
-    </div>
-      <footer class="page-footer">
-      <p>add fancy footer text</p>
-        
-      </footer>
+    </footer>
+
+
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-
     <script  src="js/index.js"></script>
   </body>
 </html>
