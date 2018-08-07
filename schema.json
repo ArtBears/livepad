@@ -73,7 +73,7 @@
         "users": {"validator": {
             "$jsonSchema": {
                 "bsonType": "object", 
-                "required": ["__id", "name", "password", "sessions", "songs"],
+                "required": ["__id", "name", "password"],
                 "properties": {
                     "__id": {
                         "bsonType": "objectId",
