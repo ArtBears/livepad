@@ -4,6 +4,8 @@
 
 */
 
+
+//not important
 function initSong(){
   
   var song_name = "testname";
