@@ -40,49 +40,30 @@ function record(){
   r = document.getElementById("rec");
   var state = mediaRecorder.state;
   if(state == 'inactive'){
-  	r.style.color = "red";
+  	r.style.color = "tomato";
+    r.style.borderLeftColor = "tomato";
+    r.style.borderBottomColor = "tomato";
   	r.innerHTML = "PAUSE";
   	mediaRecorder.start();
   	play();
   }
   else if(state == 'recording'){
   	r.style.color = "orange";
+    r.style.borderLeftColor = "orange";
+    r.style.borderBottomColor = "orange";
     r.innerHTML = "RESUME RECORDING";
     mediaRecorder.pause();
     clearInterval(clock);
   }
   else if(state == 'paused'){
-  	r.style.color = "orange";
-    r.innerHTML = "there should be sound";
+  	r.style.color = "tomato";
+    r.style.borderLeftColor = "tomato";
+    r.style.borderBottomColor = "tomato";
+    r.innerHTML = "PAUSE";
   	play();
     mediaRecorder.resume();
   }
 }
-/*
-function record(){
-  r = document.getElementById("rec");
-  if(is_recording == false){
-    r.style.color = "red";
-    r.innerHTML = "PAUSE";
-    is_recording = true;
-    if(state == "inactive"){
-    	mediaRecorder.start(tempoToMs());
-    }
-    else if(state == "paused"){
-    	mediaRecorder.resume();
-    }
-    play();
-    //call a function that only records through row once.
-  }
-  else if(is_recording == true){
-    r.style.color = "orange";
-    r.innerHTML = "RESUME RECORDING";
-    is_recording = false;
-    clearInterval(clock);
-    mediaRecorder.pause();
-  }
-}
-*/
 
 function upload(){
 	mediaRecorder.stop();
@@ -284,8 +265,10 @@ function play(){
     	i = 0;
     	if(state == 'recording'){
     		r = document.getElementById("rec");
-	      	r.style.color = "orange";
-	    	r.innerHTML = "RESUME RECORDING";
+	      r.style.color = "orange";
+        r.style.borderLeftColor = "orange";
+        r.style.borderBottomColor = "orange";
+        r.innerHTML = "RESUME RECORDING";
 	    	mediaRecorder.pause();
 	    	clearInterval(clock);
 	    }

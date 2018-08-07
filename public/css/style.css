@@ -95,33 +95,39 @@ body {
 }
 
 .playBn{
-  color: green;
+  color: mediumseagreen;
   cursor: crosshair;
   background: #222222;
   text-align: center;
+  border-left: 2px solid mediumseagreen;
+  border-bottom: 2px solid mediumseagreen;
 }
 
 .stopBn{
-  color: black;
+  color: dodgerblue;
   cursor: cell;
-  background: #333333;
+  background: #222222;
   text-align: center;
+  border-left: 2px solid dodgerblue;
+  border-bottom: 2px solid dodgerblue;
 }
 
 .recBn{
-  color: red;
+  color: tomato;
   cursor: help;
-  background: #444444;
+  background: #222222;
   text-align: center;
+  border-left: 2px solid tomato;
+  border-bottom: 2px solid tomato;
 }
 
 .uploadBn{
-  color: dodgerblue;
+  color: white;
   cursor: pointer;
   background: #111111;
   text-align: center;
-  border-bottom: 2px solid dodgerblue;
-  border-top: 2px solid dodgerblue;
+  border-bottom: 2px solid white;
+  border-top: 2px solid white;
 }
 
 .settingsBx{
@@ -133,7 +139,7 @@ body {
 .clearBn{
   color: white;
   cursor: pointer;
-  background: red;
+  background: tomato;
   margin-top: 70px;
 }
 
