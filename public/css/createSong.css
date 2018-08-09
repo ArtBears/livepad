@@ -130,6 +130,42 @@ body {
   border-top: 2px solid white;
 }
 
+.sinBn{
+  color: dodgerblue;
+  cursor: pointer;
+  background: #111111;
+  text-align: center;
+  border-bottom: 2px groove #111111;
+  border-top: 2px groove #111111;
+}
+
+.sawBn{
+  color: mediumseagreen;
+  cursor: pointer;
+  background: #111111;
+  text-align: center;
+  border-bottom: 2px groove #111111;
+  border-top: 2px groove #111111;
+}
+
+.triBn{
+  color: orange;
+  cursor: pointer;
+  background: #111111;
+  text-align: center;
+  border-bottom: 2px groove #111111;
+  border-top: 2px groove #111111;
+}
+
+.sqrBn{
+  color: tomato;
+  cursor: pointer;
+  background: #111111;
+  text-align: center;
+  border-bottom: 2px groove #111111;
+  border-top: 2px groove #111111;
+}
+
 .settingsBx{
   color: white;
   cursor: pointer;

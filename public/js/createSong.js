@@ -112,17 +112,62 @@ mediaRecorder.onstop = function(e){
   });
 };
 
+/*
+<div class="sinBn" onclick="setSin()" id="upload">SIN</div>
+<div class="sawBn" onclick="setSaw()" id="saw">SAW</div>
+<div class="triBn" onclick="setTri()" id="tri">TRI</div>
+<div class="sqrBn" onclick="setSqr()" id="sqr">SQR</div>
+*/
+
+var osc_type = "sine";
+sin_button = document.getElementById("sin");
+saw_button = document.getElementById("saw");
+tri_button = document.getElementById("tri");
+sqr_button = document.getElementById("sqr");
+sin_button.style.borderColor = "dodgerblue";
+
+function setSin(){
+  osc_type = "sine";
+  sin_button.style.borderColor = "dodgerblue";
+  saw_button.style.borderColor = "#111111";
+  tri_button.style.borderColor = "#111111";
+  sqr_button.style.borderColor = "#111111";
+}
+
+function setSaw(){
+  osc_type = "sawtooth";
+  saw_button.style.borderColor = "mediumseagreen";
+  sin_button.style.borderColor = "#111111";
+  tri_button.style.borderColor = "#111111";
+  sqr_button.style.borderColor = "#111111";
+}
+
+function setTri(){
+  osc_type = "triangle";
+  tri_button.style.borderColor = "orange";
+  sin_button.style.borderColor = "#111111";
+  saw_button.style.borderColor = "#111111";
+  sqr_button.style.borderColor = "#111111";
+}
+
+function setSqr(){
+  osc_type = "square";
+  sqr_button.style.borderColor = "tomato";
+  sin_button.style.borderColor = "#111111";
+  saw_button.style.borderColor = "#111111";
+  tri_button.style.borderColor = "#111111";
+}
+
 //clean this up eventually..
 //as of now each call to this function creates and plays
 //an oscillator sound.
-
 //onclick function
 //check the elements class and play the corresponding sound.
 //gain makes the audio easier on the ears.
 function playAudio(element){
   var osc = context.createOscillator();
   var gain = context.createGain();
-  osc.type = "sine";
+  osc.type = osc_type;
   osc.connect(gain);
   gain.connect(context.destination);
   gain.connect(song);
