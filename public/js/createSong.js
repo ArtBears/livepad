@@ -10,6 +10,26 @@ var context = new AudioContext();
 var song = context.createMediaStreamDestination();
 var mediaRecorder = new MediaRecorder(song.stream);
 
+var val_one = 1.0;
+var val_two = 2.0;
+var val_three = 3.0;
+var val_four = 4.0;
+var val_five = 5.0;
+var val_six = 6.0;
+var val_seven = 7.0;
+var val_eight = 8.0;
+
+amin_button = document.getElementById("aMin");
+cmaj_button = document.getElementById("cMaj");
+gmaj_button = document.getElementById("gMaj");
+
+function initScale(){
+  aMin();
+  amin_button.style.borderColor = "dodgerblue";
+}
+
+initScale();
+
 //get Tempo(bpm) from input field and turn it into ms.
 function tempoToMs(){
   var tempo = document.getElementById("tempo").value;
@@ -158,6 +178,91 @@ function setSqr(){
   tri_button.style.borderColor = "#111111";
 }
 
+function setAmin(){
+  aMin();
+  amin_button.style.borderColor = "dodgerblue";
+  cmaj_button.style.borderColor = "#111111";
+  gmaj_button.style.borderColor = "#111111";
+}
+
+function setCmaj(){
+  cMaj();
+  cmaj_button.style.borderColor = "orange";
+  amin_button.style.borderColor = "#111111";
+  gmaj_button.style.borderColor = "#111111";
+}
+
+function setGmaj(){
+  gMaj();
+  gmaj_button.style.borderColor = "tomato";
+  amin_button.style.borderColor = "#111111";
+  cmaj_button.style.borderColor = "#111111";
+}
+
+
+function aMin(){
+  /*
+  1 = A
+  2 = B
+  3 = C
+  4 = D
+  5 = E
+  6 = F
+  7 = G
+  8 = A
+  */
+  val_one = 220.0;
+  val_two = 246.9;
+  val_three = 261.6;
+  val_four = 293.7;
+  val_five = 329.6;
+  val_six = 349.2;
+  val_seven = 392.0;
+  val_eight = 440.0;
+}
+
+function cMaj(){
+  /*
+  1 = C
+  2 = D
+  3 = E
+  4 = F
+  5 = G
+  6 = A
+  7 = B
+  8 = C
+  */
+  val_one = 261.63;
+  val_two = 293.66;
+  val_three = 329.63;
+  val_four = 349.23;
+  val_five = 392.00;
+  val_six = 440.00;
+  val_seven = 493.88;
+  val_eight = 523.25;
+}
+
+function gMaj(){
+   /*
+  1 = G
+  2 = A
+  3 = B
+  4 = C
+  5 = D
+  6 = E
+  7 = F#
+  8 = G
+  */
+  val_one = 196.00;
+  val_two = 220.00;
+  val_three = 246.94;
+  val_four = 261.63;
+  val_five = 293.66;
+  val_six = 329.63;
+  val_seven = 369.99;
+  val_eight = 392.00;
+}
+
 //clean this up eventually..
 //as of now each call to this function creates and plays
 //an oscillator sound.
@@ -177,35 +282,35 @@ function playAudio(element){
   gain.gain.linearRampToValueAtTime(0, context.currentTime + 0.4);
   
   if(element.classList.contains("sineA3")){
-    osc.frequency.value = 220.0;
+    osc.frequency.value = val_one;
     osc.start();
   }
   else if(element.classList.contains("sineB3")){
-    osc.frequency.value = 246.9;
+    osc.frequency.value = val_two;
     osc.start();
   }
   else if(element.classList.contains("sineC4")){
-    osc.frequency.value = 261.6;
+    osc.frequency.value = val_three;
     osc.start();
   }
   else if(element.classList.contains("sineD4")){
-    osc.frequency.value = 293.7;
+    osc.frequency.value = val_four;
     osc.start();
   }
   else if(element.classList.contains("sineE4")){
-    osc.frequency.value = 329.6;
+    osc.frequency.value = val_five;
     osc.start();
   }
   else if(element.classList.contains("sineF4")){
-    osc.frequency.value = 349.2;
+    osc.frequency.value = val_six;
     osc.start();
   }
   else if(element.classList.contains("sineG4")){
-    osc.frequency.value = 392.0;
+    osc.frequency.value = val_seven;
     osc.start();
   }
   else if(element.classList.contains("sineA5")){
-    osc.frequency.value = 440.0;
+    osc.frequency.value = val_eight;
     osc.start();
   }
 }
