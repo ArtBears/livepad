@@ -38,28 +38,24 @@
     <div class="container text-center" id="parent">
       <div class="row justify-content-center align-self-center .no-gutters">
         <button type="button" class="btn btn-outline-dark btn-block" onclick="addChild()">
-            New
+            New Session
           </button>
       </div>
-      <div class="row justify-content-center align-self-center .no-gutters">
-        <div class="col-2">Song Name</div>
-        <div class="col-1">-</div>
-        <div class="col-2">Username</div>
-        <div class="col-5">Session details?</div>
-        <div class="col-2">
-          <a class="btn btn-link btn-sm" href='/session/createSong/5b6373f488e052c180b3a248/1' role="button">Join</a>
-        </div>
-      </div>
+      <br><br>
       
+
+      <% sessions.forEach(function(session, users) { %>
       <div class="row justify-content-center align-self-center .no-gutters">
-        <div class="col-2">Song Name</div>
-        <div class="col-1">-</div>
-        <div class="col-2">Username</div>
-        <div class="col-5">users listening</div>
+        <div class="col-1"> Session Date: <%= session.start %> </div>
+        <div class="col-5"> Session Name: <%= session.name %> </div>
+        <div class="col-2"> Users: <%= session.users %> </div>
+        <div class="col-2"> ahhhh </div>
         <div class="col-2">
           <a class="btn btn-link btn-sm" href='/session/createSong/5b6373f488e052c180b3a248/1' role="button">Join</a>
         </div>
       </div>
+      <% }); %>
+      
     </div>
     
     <footer class="page-footer">
