@@ -7,149 +7,41 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="css/createSong.css">
+    <link rel="stylesheet" href="css/signup.css">
 
     <title>Capstone</title>
   </head>
   <body>
-    <footer class="site-wrapper">
-      <nav class="navbar navbar-custom navbar-expand nav-justified">
+    <nav class="navbar navbar-custom navbar-expand nav-justified">
       <a class="navbar-brand" href="#">Capstone</a>
     </nav>
-      <div class="page-header">
-        <audio controls id="HELP"></audio>
-      </div>
-
-      <div class="container align-self-center">
-        <div class="row align-items-stretch justify-content-center">
-          <div class="col-xs-6 text-center order-3">
-            <div class="playBn" onclick="play()">PLAY</div>
-            <div class="stopBn" onclick="stop()" id="stop">STOP</div>
-            <div class="recBn" onclick="record()" id="rec">RECORD</div>
-            <div class ="settingsBx">
-              <form>
-                <label for="tempo">Tempo</label>
-                <input type="number" id="tempo" name="tempo" value="80" class="no-spinners"</input>
-              </form>
+    
+    <div class="container-fluid">
+      <div class="row rowcustom justify-content-center align-self-center">
+        <div class="col-md-auto text-center">
+          <form>
+            <div class="form-group">
+              <label for="userNameForm"></label>
+                <input type="text" class="form-control form-control-lg" id="userNameInput" placeholder="Username">
             </div>
-            <div class="clearBn" onclick="reset()">clear</div>
-          </div>
-        
-        <div class="padcontainer" id="livepad">
-          <div class="row no-gutters">
-            <div class="col">
-              <div class="hiddenBox"></div>
-              <div class="button sineA3" onclick="set(this, 'mediumseagreen')"></div>
-              <div class="button sineB3" onclick="set(this, 'dodgerblue')"></div>
-              <div class="button sineC4" onclick="set(this, 'orange')"></div>
-              <div class="button sineD4" onclick="set(this, 'tomato')"></div>
-              <div class="button sineE4" onclick="set(this, 'mediumseagreen')"></div>
-              <div class="button sineF4" onclick="set(this, 'dodgerblue')"></div>
-              <div class="button sineG4" onclick="set(this, 'orange')"></div>
-              <div class="button sineA5" onclick="set(this, 'tomato')"></div> 
+            <div class="form-group">
+                <input type="password" class="form-control" id="passWordInput" placeholder="Password">
             </div>
-            <div class="col">
-              <div class="hiddenBox"></div>
-              <div class="button sineA3" onclick="set(this, 'mediumseagreen')"></div>
-              <div class="button sineB3" onclick="set(this, 'dodgerblue')"></div>
-              <div class="button sineC4" onclick="set(this, 'orange')"></div>
-              <div class="button sineD4" onclick="set(this, 'tomato')"></div>
-              <div class="button sineE4" onclick="set(this, 'mediumseagreen')"></div>
-              <div class="button sineF4" onclick="set(this, 'dodgerblue')"></div>
-              <div class="button sineG4" onclick="set(this, 'orange')"></div>
-              <div class="button sineA5" onclick="set(this, 'tomato')"></div> 
-            </div> 
-            <div class="col">
-              <div class="hiddenBox"></div>
-              <div class="button sineA3" onclick="set(this, 'mediumseagreen')"></div>
-              <div class="button sineB3" onclick="set(this, 'dodgerblue')"></div>
-              <div class="button sineC4" onclick="set(this, 'orange')"></div>
-              <div class="button sineD4" onclick="set(this, 'tomato')"></div>
-              <div class="button sineE4" onclick="set(this, 'mediumseagreen')"></div>
-              <div class="button sineF4" onclick="set(this, 'dodgerblue')"></div>
-              <div class="button sineG4" onclick="set(this, 'orange')"></div>
-              <div class="button sineA5" onclick="set(this, 'tomato')"></div> 
-            </div> 
-            <div class="col">
-              <div class="hiddenBox"></div>
-              <div class="button sineA3" onclick="set(this, 'mediumseagreen')"></div>
-              <div class="button sineB3" onclick="set(this, 'dodgerblue')"></div>
-              <div class="button sineC4" onclick="set(this, 'orange')"></div>
-              <div class="button sineD4" onclick="set(this, 'tomato')"></div>
-              <div class="button sineE4" onclick="set(this, 'mediumseagreen')"></div>
-              <div class="button sineF4" onclick="set(this, 'dodgerblue')"></div>
-              <div class="button sineG4" onclick="set(this, 'orange')"></div>
-              <div class="button sineA5" onclick="set(this, 'tomato')"></div> 
-            </div> 
-            <div class="col">
-              <div class="hiddenBox"></div>
-              <div class="button sineA3" onclick="set(this, 'mediumseagreen')"></div>
-              <div class="button sineB3" onclick="set(this, 'dodgerblue')"></div>
-              <div class="button sineC4" onclick="set(this, 'orange')"></div>
-              <div class="button sineD4" onclick="set(this, 'tomato')"></div>
-              <div class="button sineE4" onclick="set(this, 'mediumseagreen')"></div>
-              <div class="button sineF4" onclick="set(this, 'dodgerblue')"></div>
-              <div class="button sineG4" onclick="set(this, 'orange')"></div>
-              <div class="button sineA5" onclick="set(this, 'tomato')"></div> 
-            </div> 
-            <div class="col">
-              <div class="hiddenBox"></div>
-              <div class="button sineA3" onclick="set(this, 'mediumseagreen')"></div>
-              <div class="button sineB3" onclick="set(this, 'dodgerblue')"></div>
-              <div class="button sineC4" onclick="set(this, 'orange')"></div>
-              <div class="button sineD4" onclick="set(this, 'tomato')"></div>
-              <div class="button sineE4" onclick="set(this, 'mediumseagreen')"></div>
-              <div class="button sineF4" onclick="set(this, 'dodgerblue')"></div>
-              <div class="button sineG4" onclick="set(this, 'orange')"></div>
-              <div class="button sineA5" onclick="set(this, 'tomato')"></div> 
-            </div> 
-            <div class="col">
-              <div class="hiddenBox"></div>
-              <div class="button sineA3" onclick="set(this, 'mediumseagreen')"></div>
-              <div class="button sineB3" onclick="set(this, 'dodgerblue')"></div>
-              <div class="button sineC4" onclick="set(this, 'orange')"></div>
-              <div class="button sineD4" onclick="set(this, 'tomato')"></div>
-              <div class="button sineE4" onclick="set(this, 'mediumseagreen')"></div>
-              <div class="button sineF4" onclick="set(this, 'dodgerblue')"></div>
-              <div class="button sineG4" onclick="set(this, 'orange')"></div>
-              <div class="button sineA5" onclick="set(this, 'tomato')"></div> 
-            </div> 
-            <div class="col">
-              <div class="hiddenBox"></div>
-              <div class="button sineA3" onclick="set(this, 'mediumseagreen')"></div>
-              <div class="button sineB3" onclick="set(this, 'dodgerblue')"></div>
-              <div class="button sineC4" onclick="set(this, 'orange')"></div>
-              <div class="button sineD4" onclick="set(this, 'tomato')"></div>
-              <div class="button sineE4" onclick="set(this, 'mediumseagreen')"></div>
-              <div class="button sineF4" onclick="set(this, 'dodgerblue')"></div>
-              <div class="button sineG4" onclick="set(this, 'orange')"></div>
-              <div class="button sineA5" onclick="set(this, 'tomato')"></div> 
-            </div>    
-          </div>
-        </div> 
+            <a class="btn btn-block btn-outline-success"  role="button" onclick="signup()">Sign up</a>
+          </form>
+          <small class="form-text text-muted">
+            Already have an account? <a href='/login'>Sign in here.</a>
+          </small>
+        </div>
       </div>
-        <br>
-        <div class="row align-items-stretch justify-content-center">
-          <div class="sinBn" onclick="setSin()" id="sin">SIN</div>
-          <div class="sawBn" onclick="setSaw()" id="saw">SAW</div>
-          <div class="triBn" onclick="setTri()" id="tri">TRI</div>
-          <div class="sqrBn" onclick="setSqr()" id="sqr">SQR</div>
-        </div>
-        <br>
-        <div class="row align-items-stretch justify-content-center">
-          <div class="aminBn" onclick="setAmin()" id="aMin">Am</div>
-          <div class="cmajBn" onclick="setCmaj()" id="cMaj">C</div>
-          <div class="gmajBn" onclick="setGmaj()" id="gMaj">G</div>
-        </div>
-        <br><br>
-        <div class="row align-items-stretch justify-content-center">
-          <div class="uploadBn" onclick="upload()" id="upload">UPLOAD</div>
-        </div>
     </div>
-      <footer class="page-footer">
-      <p>add fancy footer text</p>
+    <footer class="page-footer">
+      <p>dd</p>
         
-      </footer>
+    </footer>
+
+
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -157,6 +49,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
-    <script  src="js/createSong.js"></script>
+    <script  src="js/signup.js"></script>
   </body>
 </html>

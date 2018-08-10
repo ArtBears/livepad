@@ -7,24 +7,24 @@ login page
     Should query the DB for the form data, if null return error
 */
 
-var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:3000/";
 
-
-//get username from form
 var username = "testname";
+var password = "testpass";
 
-function isUser(username){
-	var inputname = username;
-	MongoClient.connect(url, function(err, db) {
-		if (err) throw err;
-  		var dbo = db.db("livepad");
-  		var query = { user: inputname };
-  		dbo.collection("users").find(query).toArray(function(err, result) {
-  			if (err) throw err;
-  			console.log(result);
-  			//
-   			db.close();
-   		});
-  	});
+var fd = new FormData();
+
+function login(){
+  username = document.getElementById("userNameInput").value;
+  password = document.getElementById("passWordInput").value;
+  console.log(username + " " + password);
+  postReq(username, password);
+}
+
+function postReq(username, pass){
+  //fd.append('acorn', blob, song_name + ".ogg");
+  fetch('/login/'+username+'/'+pass, 
+  {
+   method: 'post',
+   body: fd
+  });
 }

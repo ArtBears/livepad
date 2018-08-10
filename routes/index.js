@@ -49,7 +49,7 @@ router.post('/login/:username/:pass', (req,res,next) => {
 				// session doesn't exit
 				console.log("User: " +user+ " doesn't exist");
 				let userError = "Your password or username may be invalid.";
-				res.render(401, "login", {error: userError});
+				res.render("login", {error: userError});
 			}
 			else {
 				//return page with info for session
@@ -80,18 +80,22 @@ router.post('/signup/:username/:pass', (req,res,next) => {
 			else if(null == doc){
 				// user doesn't exit so create
 				let id = new ObjectId();
-				req.db.collection('Users')
-					.insertOne({__id: id, name: user, password: pass})
-					.next((err, doc) => {
-						// send home or to sessions
-						res.render(200, "list", {username: user, userId: id, loggedin: true})
-					})
+				try{
+					req.db.collection('users')
+						.insertOne({__id: id, name: user, password: pass})
+					// send home or to sessions
+					res.render("list", {username: user, userId: id, loggedin: true});
+				}
+				catch(e) {
+					console.log(e)
+					res.render("signup", {error: e});
+				}
 			}
 			else {
 				//return page with info for session
 				console.log(doc);
 				let userError = "User already exists";
-				res.render(400, "signup", {error: userError});
+				res.render("signup", {error: userError});
 			}
 		})
 })
@@ -137,7 +141,7 @@ router.get('/session/listen/:session_id', (req, res, next) => {
 			else if(null == results){
 				// session doesn't exit
 				let songError = "No Songs in this Session";
-				res.render(400, "listen", {error: songError});
+				res.render("listen", {error: songError});
 			}
 			else {
 				//return page with info for session
