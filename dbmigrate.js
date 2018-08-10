@@ -33,7 +33,7 @@ var song_1 = {
 console.log("SONG ID: " + song_id.toHexString())
 console.log("USER ID: " + user_id.toHexString())
 
-MongoClient.connect("mongodb://localhost:27017", function(err, client){
+MongoClient.connect("mongodb://localhost:27017", { useNewUrlParser: true }, function(err, client){
  	if(err){
  		console.log(err);
  	}
