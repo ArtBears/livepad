@@ -80,12 +80,16 @@ router.post('/signup/:username/:pass', (req,res,next) => {
 			else if(null == doc){
 				// user doesn't exit so create
 				let id = new ObjectId();
-				req.db.collection('Users')
-					.insertOne({__id: id, name: user, password: pass})
-					.next((err, doc) => {
-						// send home or to sessions
-						res.render(200, "list", {username: user, userId: id, loggedin: true})
-					})
+				try{
+					req.db.collection('users')
+						.insertOne({__id: id, name: user, password: pass})
+					// send home or to sessions
+					res.render(200, "list", {username: user, userId: id, loggedin: true});
+				}
+				catch(e) {
+					console.log(e)
+					res.render(401, "signup", {error: e});
+				}
 			}
 			else {
 				//return page with info for session
