@@ -18,14 +18,14 @@ var session_1 = {
     __id: id,
     name: "testSession1",
     date: new Date(),
-    diskLocation: __dirname + "routes/sessions/" + id.toHexString()   
+    diskLocation: __dirname + "/routes/sessions/" + id.toHexString()   
 } 
 
 var song_id = new ObjectId();
 var user_id = new ObjectId("5b60da49a6f29cab1db9b27c");
 var song_1 = {
     __id: id,
-    name: "testSession1",
+    name: "testSong1",
     userId: user_id,
     sessionId: id,
     length: 0.01
