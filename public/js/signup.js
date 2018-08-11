@@ -37,7 +37,7 @@ function postReq(username, pass){
       confirm(resp.error)
     }
     else if(resp.status == 201){
-      window.location.replace('/session/list');
+      //window.location.replace('/session/list');
     }
   });
 }
