@@ -36,7 +36,7 @@ router.post('/login/:username/:pass', (req,res,next) => {
 	// check user info
 	let user = req.params.username;
 	let pass = req.params.password;
-	req.db.collection('Users')
+	req.db.collection('users')
 		.find({name: user, password: pass})
 		.next((err, doc) => {
 			if(err){
@@ -68,7 +68,7 @@ router.post('/signup/:username/:pass', (req,res,next) => {
 	let pass = req.params.password;
 
 	// check user info
-	req.db.collection('Users')
+	req.db.collection('users')
 		.find({name: user})
 		.next((err, doc) => {
 			if(err){
@@ -81,6 +81,7 @@ router.post('/signup/:username/:pass', (req,res,next) => {
 				// user doesn't exit so create
 				let id = new ObjectId();
 				try{
+					console.log("redirect");
 					req.db.collection('users')
 						.insertOne({__id: id, name: user, password: pass})
 					// send home or to sessions
@@ -95,7 +96,7 @@ router.post('/signup/:username/:pass', (req,res,next) => {
 				//return page with info for session
 				console.log(doc);
 				let userError = "User already exists";
-				res.render("signup", {error: userError});
+				res.render('signup', {error: userError});
 			}
 		})
 })

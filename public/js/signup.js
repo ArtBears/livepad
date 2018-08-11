@@ -10,31 +10,50 @@ signup page
     Redirect to session list with user
 */
 
-var username = "testname";
-var password = "testpass";
+var username = "";
+var password = "";
+
+var fd = new FormData();
 
 function signup(){
   username = document.getElementById("userNameInput").value;
   password = document.getElementById("passWordInput").value;
-  console.log(username + " " + password);
   postReq(username, password);
 }
 
+
 function postReq(username, pass){
   //fd.append('acorn', blob, song_name + ".ogg");
-  /*
-  '/signup/:username/:pass'
-  */
-  var fd = new FormData();
   fetch('/signup/'+username+'/'+pass, 
   {
    method: 'post',
    body: fd
-  }).then(function(response){
-    return response.json();
-  })
-  .then(function(){
-    console.log("aa");
-  });
+  }).then(response => console.log(response))
+  .catch(error => console.log(error));
 }
 
+/*
+function postReq(u, p){
+  var username = u;
+  var password = p;
+  console.log(username,password);
+  var data = {
+    name: username,
+    password: password
+   };
+  /*
+  '/signup/:username/:pass'
+
+  //fetch('/signup/'+username+'/'+pass, 
+  fetch('/signup/'+username+'/'+password, 
+  {
+   method: 'POST',
+   body: JSON.stringify(data),
+   headers: {
+    'Content-Type': 'application/json',
+  },
+  }).then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(response => console.log('Success:', response));
+}
+*/

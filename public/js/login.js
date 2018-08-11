@@ -21,7 +21,6 @@ function login(){
 }
 
 function postReq(username, pass){
-  //fd.append('acorn', blob, song_name + ".ogg");
   fetch('/login/'+username+'/'+pass, 
   {
    method: 'post',
