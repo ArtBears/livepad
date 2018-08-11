@@ -39,12 +39,9 @@ body {
   opacity: 0.9;
 }
 
+
 .rowcustom{
   padding-top: 24px;
-}
-
-.col-md-auto, .col-4{
-  background: #111111;
 }
 
 .page-footer{
