@@ -196,7 +196,7 @@ router.post('/session/new/:name/:user/:start/:end', (req, res, next) => {
 				diskLocation: dir
 			}
 		);
-				let session_path = "/session/" + id.toHexString();
+				let session_path = "/session/" + id.toHexString() + '/' + req.params.user ;
 				res.status(200).json({status: 200, path: session_path});
 	}
 	catch (e) {
