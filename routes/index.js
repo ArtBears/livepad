@@ -224,7 +224,7 @@ router.get('/session/createSong/:session_id/:user_id', (req, res, next) => {
 		req.db
 			.collection('sessions')
 				.updateOne( {__id: req.params.session_id},
-							{$push: {songs: id} }); // id is ObjectId("24ByteHexCode")
+							{$push: {songs: id, users: req.params.user_id} }); // id is ObjectId("24ByteHexCode")
 					
 		res.status(200).render('createSong' , {id: id, sessionId: req.params.session_id, userId: req.params.user_id});					
 	}
