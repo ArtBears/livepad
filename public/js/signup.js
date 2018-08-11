@@ -28,13 +28,12 @@ function postReq(username, pass){
   {
    method: 'post',
    body: fd
- }).then(res => res.json())
-  .catch(error => console.error('Error:', error))
-  .then(response => console.log('Success:', response));
-  //}).then(response => console.log("it works cool"))
-  //.catch(error => console.log(error, "there should be an error here"));
-
-  
+  }).then(function(response){
+    return response.json();
+  })
+  .then(function(resp){
+    console.log(resp);
+  });
 }
 
 /*
