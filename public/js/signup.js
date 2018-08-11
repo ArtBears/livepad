@@ -12,9 +12,13 @@ signup page
 
 var username = "";
 var password = "";
-
 var fd = new FormData();
 
+/*
+signup()
+parse username and password input fields
+make a post request call and pass username, password
+*/
 function signup(){
   username = document.getElementById("userNameInput").value;
   password = document.getElementById("passWordInput").value;
@@ -22,8 +26,14 @@ function signup(){
 }
 
 
+/*
+postReq(username, pass)
+takes username, password input and makes post request
+will do different things depending on response status code
+400 == error -> alert user
+201 == success -> redirect to next page
+*/
 function postReq(username, pass){
-  //fd.append('acorn', blob, song_name + ".ogg");
   fetch('/signup/'+username+'/'+pass, 
   {
    method: 'post',
@@ -37,12 +47,16 @@ function postReq(username, pass){
       confirm(resp.error)
     }
     else if(resp.status == 201){
-      //window.location.replace('/session/list');
+      window.location.replace('/session/list');
     }
   });
 }
 
-/*
+
+
+
+/* zombie code, used for my own reference
+
 function postReq(u, p){
   var username = u;
   var password = p;

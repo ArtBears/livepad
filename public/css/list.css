@@ -18,6 +18,11 @@ body {
   color: white;
 }
 
+.navbar-brand{
+  width: 100%;
+  text-align: center;
+}
+
 .navbar-custom .navbar-nav .nav-link {
     color: #888888;
 }

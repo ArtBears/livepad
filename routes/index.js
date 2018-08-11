@@ -105,7 +105,7 @@ router.post('/signup/:username/:pass', (req,res,next) => {
 
 router.get('/session/list', (req, res, next) => {
 	// Grab list of sessions from the database and list them
-	req.db.collection('sessions')
+	req.db.collection('Sessions')
 		.find()
 		.toArray((err, doc) => {
 			if(err){
@@ -118,12 +118,12 @@ router.get('/session/list', (req, res, next) => {
 				// session doesn't exit
 				console.log("session doesn't exist");
 				let sessionErr = "No Sessions Found"
-				res.render("list", {error: sessionErr});
+				res.render('list', {error: sessionErr});
 			}
 			else {
 				//return page with info for session
 				console.log(doc);
-				res.render("list", {sessions: doc});
+				res.render('list', {sessions: doc});
 			}
 		})
 

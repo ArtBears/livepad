@@ -59,9 +59,9 @@ MongoClient.connect("mongodb://localhost:27017", function(err, client){
             }   
         })
         
-        db.collection('Sessions')
+        db.collection('sessions')
             .insertOne(session_1);
-        db.collection('Songs')
+        db.collection('songs')
             .insertOne(song_1);
  	}
 
