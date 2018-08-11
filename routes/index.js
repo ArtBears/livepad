@@ -154,7 +154,7 @@ router.get('/session/listen/:session_id', (req, res, next) => {
 	// res.render('listen')
 })
 
-router.get('/session/:session_id', (req, res, next) => {
+router.get('/session/:session_id/:user_id', (req, res, next) => {
 	// loads the session page and lists the current users
 	let id = new ObjectId(req.params.session_id);
 	req.db.collection('sessions')
@@ -175,7 +175,7 @@ router.get('/session/:session_id', (req, res, next) => {
 			else {
 				//return page with info for session
 				console.log(doc);
-				res.render("session", {info: doc});
+				res.render("session", {info: doc, user: req.params.user_id});
 			}
 		})
 });
