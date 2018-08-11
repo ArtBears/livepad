@@ -37,7 +37,7 @@ router.post('/login/:username/:pass', (req,res,next) => {
 	let user = req.params.username;
 	let pass = req.params.pass;
 	req.db.collection('users')
-		.find({ $and: [ { name: user }, { password: pass } ] })
+		.find({ "$and": [ { name: user }, { password: pass } ] })
 		.next((err, doc) => {
 			if(err){
 				// some error occured with query
@@ -192,7 +192,7 @@ router.post('/session/new/:name/:user/:start/:end', (req, res, next) => {
 				__id: id,
 				name: req.params.name,
 				date: new Date(),
-				$push: {users: req.params.user},
+				"$push": {users: req.params.user},
 				diskLocation: dir
 			}
 		);
@@ -224,7 +224,7 @@ router.get('/session/createSong/:session_id/:user_id', (req, res, next) => {
 		req.db
 			.collection('sessions')
 				.updateOne( {__id: req.params.session_id},
-							{$push: {songs: id, users: req.params.user_id} }); // id is ObjectId("24ByteHexCode")
+							{"$push": {songs: id, users: req.params.user_id} }); // id is ObjectId("24ByteHexCode")
 					
 		res.status(200).render('createSong' , {id: id, sessionId: req.params.session_id, userId: req.params.user_id});					
 	}
