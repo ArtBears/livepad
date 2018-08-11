@@ -192,7 +192,7 @@ router.post('/session/new/:name/:user/:start/:end', (req, res, next) => {
 				name: req.params.name,
 				date: new Date(),
 				//"push": {users: req.params.user},
-				push: {users: req.params.user},
+				users: [req.params.user],
 				diskLocation: dir
 			}
 		);
@@ -207,6 +207,7 @@ router.post('/session/new/:name/:user/:start/:end', (req, res, next) => {
 router.get('/session/createSong/:session_id/:user_id', (req, res, next) => {
 	// generate a song ID
 	// save the record of the song/session/user
+	// required ["__id", "name", "userId", "sessionId", "length"]
 	let id = new ObjectId();
 	let temp_song_name = req.params.session_id + "-" + req.params.user_id;
 	
