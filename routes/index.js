@@ -104,7 +104,7 @@ router.post('/signup/:username/:pass', (req,res,next) => {
 
 router.get('/session/list', (req, res, next) => {
 	// Grab list of sessions from the database and list them
-	req.db.collection('sessions')
+	req.db.collection('Sessions')
 		.find()
 		.toArray((err, doc) => {
 			if(err){
@@ -130,7 +130,7 @@ router.get('/session/list', (req, res, next) => {
 
 router.get('/session/listen/:session_id', (req, res, next) => {
 	let id = req.params.session_id;
-	req.db.collection('songs')
+	req.db.collection('Songs')
 		.find({session_id: id})
 		.toArray( (err, results) => {
 			if(err){
@@ -156,7 +156,7 @@ router.get('/session/listen/:session_id', (req, res, next) => {
 router.get('/session/:session_id', (req, res, next) => {
 	// loads the session page and lists the current users
 	let id = new ObjectId(req.params.session_id);
-	req.db.collection('sessions')
+	req.db.collection('Sessions')
 		.find({__id: id})
 		.next( (err, doc)=>{
 			if(err){
@@ -182,7 +182,7 @@ router.post('/session/new/:name/:user/:start/:end', (req, res, next) => {
 	// create a session in the DB
 	let id = new ObjectId();
 	let dir = createDir(id.toHexString());
-	req.db.collection('sessions')
+	req.db.collection('Sessions')
 		.insertOne(
 			{
 				__id: id,
@@ -251,7 +251,7 @@ router.post('/song/upload/:session_id/:song_id/:song_name/:length', upload.singl
 	// save song to file system
 	// update properties: length, name
 	// req is a stream bro
-	req.db.collection('songs')
+	req.db.collection('Songs')
 		.updateOne(	{__id: req.params.song_id},
 					{name: req.params.song_name,
 					 length: req.params.length}

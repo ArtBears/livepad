@@ -37,15 +37,19 @@ body {
 }
 
 .col-md-auto{
-  background: #111111;
+  background: orange;
+}
+
+.col-1{
+  background: #444444;
 }
 
 .col-2{
   background: #111111;
 }
 
-.col-1{
-  background: red;
+.col-4{
+  background: #222222;
 }
 
 .col-5{

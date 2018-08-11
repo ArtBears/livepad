@@ -21,15 +21,15 @@
             <a class="nav-link" href="#">Home</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="#">Sessions<span class="sr-only">(current)</span></a>
           </li>
         </ul>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <!--replace with user-->
+            <!--replace with user
             <% sessions.forEach(function(session, users) { %>
               <a class="nav-link">USERNAME HERE</a>
             <% }); %>
+            -->
           </li>
         </ul>
       </div>
@@ -43,15 +43,14 @@
       </div>
       <br><br>
       
-      <!--sessions ejs template-->
+      
       <% sessions.forEach(function(session, users) { %>
       <div class="row justify-content-center align-self-center .no-gutters">
         <div class="col-1"> Session Date: <%= session.date %> </div>
         <div class="col-5"> Session Name: <%= session.name %> </div>
-        <div class="col-2"> Users: <%= session.users %> </div>
-        <div class="col-2"> ahhhh </div>
+        <div class="col-4"> Session id: <%= session.__id %> </div>
         <div class="col-2">
-          <a class="btn btn-link btn-sm" href='#' role="button">Join</a>
+          <a class="btn btn-link btn-sm" href='/session/' role="button">Join</a>
         </div>
       </div>
       <% }); %>
