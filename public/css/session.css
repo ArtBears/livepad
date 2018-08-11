@@ -18,6 +18,11 @@ body {
   color: white;
 }
 
+.navbar-brand{
+  width: 100%;
+  text-align: center;
+}
+
 .navbar-custom .navbar-nav .nav-link {
     color: #888888;
 }
@@ -27,33 +32,19 @@ body {
     color: #ffffff;
 }
 
-.container{
-  margin-top: 24px;
+.container-fluid{
+  height: 100%;
+  background: black;
   color: white;
+  opacity: 0.9;
 }
 
-.row{
-  border-bottom: 1px solid #222222;
+.rowcustom{
+  padding-top: 24px;
 }
 
-.col-md-auto{
-  background: orange;
-}
-
-.col-1{
-  background: #444444;
-}
-
-.col-2{
+.col-md-auto, .col-4{
   background: #111111;
-}
-
-.col-4{
-  background: #222222;
-}
-
-.col-5{
-  background: #333333;
 }
 
 .page-footer{
