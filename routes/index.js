@@ -105,7 +105,7 @@ router.post('/signup/:username/:pass', (req,res,next) => {
 
 router.get('/session/list', (req, res, next) => {
 	// Grab list of sessions from the database and list them
-	req.db.collection('Sessions')
+	req.db.collection('sessions')
 		.find()
 		.toArray((err, doc) => {
 			if(err){
