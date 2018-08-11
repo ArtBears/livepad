@@ -51,15 +51,19 @@
         </div>
         
         <!-- -->
-        <% sessions.forEach(function(session, users) { %>
+        <% var i = 0;%>
+        <% sessions.forEach(function(session, i) { %>
         <div class="row justify-content-center align-self-center">
           <div class="col-6"> 
             <h6><%= session.name %></h6>
             <small class="text-muted"><%=session.date%></small>
           </div>
-          <div class="col-4"> Users: <%= session.users %> </div>
+          <div class="col-4"> Users: 
+            <%= session.users %>
+            <% i++; %>
+          </div>
           <div class="col-2">
-            <a class="btn btn-link btn-sm" href='/session/<%-session.__id%>' role="button">Join</a>
+            <a class="btn btn-link btn-sm" href='/session/<%-session.__id%>/<%=user%>' role="button">Join</a>
           </div>
         </div>
         <% }); %>

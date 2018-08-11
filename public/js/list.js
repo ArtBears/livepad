@@ -12,8 +12,8 @@ var adjectives = ["murky","neat","nonchalant","vivacious","white","materialistic
 "greasy","industrious","sassy","vengeful","frantic","stale","tame","red","highfalutin","chunky","brainy","feeble","damp","craven",
 "half","squeamish","available","zonked","assorted","terrific","thirsty","dirty","staking","bored","stupendous","absent"]
 
-var nouns = ["sweater","kettle","back","eggs","religion","attack","dogs","lake","credit","arch","badge","sleet","apparel","plantation",
-"corn","walk","night","railway","suit","passenger","rat","turn","finger","cat"]
+var nouns = ["Sweater","Kettle","Back","Eggs","Religion","Attack","Dogs","Lake","Credit","Arch","Badge","Sleet","Apparel","Plantation",
+"Worn","Walk","Night","Railway","Suit","Passenger","Rat","Turn","Finger","Cat"]
 
 var adjective = adjectives[Math.floor(Math.random()*adjectives.length)];
 var noun = nouns[Math.floor(Math.random()*nouns.length)];
@@ -59,7 +59,7 @@ function postReq(name, user, start, end){
     }
     else if(resp.status == 200){
       var uid = resp.userId;
-      var path = resp.path;
+      var path = resp.path+'/'+user;
       //console.log(path);
       //let session_path = "/session/" + id.toHexString();
       window.location.replace(path);

@@ -13,7 +13,7 @@
   </head>
   <body>
     <nav class="navbar navbar-custom navbar-expand nav-justified">
-      <a class="navbar-brand" href="#">Capstone</a>
+      <a class="navbar-brand" href="#"><%=user%></a>
     </nav>
     
     <div class="container-fluid">
@@ -23,10 +23,19 @@
           <h1><small>session</small><%= info.name %></h1>
         </div>
       </div>
+      <div class="row rowcustom justify-content-center align-self-center">
+        <div class="col-md-auto">
+          <small class="muted">
+            <% info.users.forEach(function(value) { %>
+            <p><%= value %></p>
+            <% }); %>
+          </small>
+        </div>
+      </div>
       <br><br>
       <div class="row rowcustom justify-content-center align-self-center">
         <div class="col-6">
-          <a class="btn btn-block btn-outline-primary" href='/session/createSong/<%-info.__id%>/:user_id' role="button">Create</a>
+          <a class="btn btn-block btn-outline-primary" href='/session/createSong/<%-info.__id%>/<%=user%>' role="button">Create</a>
         </div>
       </div>
       <div class="row rowcustom justify-content-center align-self-center">
