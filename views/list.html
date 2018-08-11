@@ -30,27 +30,46 @@
       </div>
     </nav>
     
-    <div class="container text-center" id="parent">
-      <div class="row justify-content-center align-self-center .no-gutters">
-        <p id="userelement" style="display:none"><%= user %></p>
-        <a class="btn btn-outline-dark btn-block" role="button" onclick="newSession()">New Session</a>
-      </div>
-      <br><br>
-      
-      <!-- -->
-      <% sessions.forEach(function(session, users) { %>
-      <div class="row justify-content-center align-self-center .no-gutters">
-        <div class="col-1"> DATE </div>
-        <div class="col-5"> Session Name: <%= session.name %> </div>
-        <div class="col-4"> Users: <%= session.users %> </div>
-        <div class="col-2">
-          <a class="btn btn-link btn-sm" href='/session/<%-session.__id%>' role="button">Join</a>
+    <div class="container-fluid">
+      <br>
+      <div class="container text-center" id="parent">
+        <div class="row justify-content-center align-self-center">
+          <p id="userelement" style="display:none"><%= user %></p>
+          <a class="btn btn-outline-dark btn-block" role="button" onclick="newSession()">New Session</a>
+        </div>
+        <br><br>
+
+        <div class="row justify-content-center align-self-center">
+          <div class="col-6"> 
+            <h5>Session Name</h5>
+          </div>
+          <div class="col-4">
+            <h5>Users</h5>
+          </div>
+          <div class="col-2">
+          </div>
+        </div>
+        
+        <!-- -->
+        <% var i = 0;%>
+        <% sessions.forEach(function(session, i) { %>
+        <div class="row justify-content-center align-self-center">
+          <div class="col-6"> 
+            <h6><%= session.name %></h6>
+            <small class="text-muted"><%=session.date%></small>
+          </div>
+          <div class="col-4"> Users: 
+            <%= session.users %>
+            <% i++; %>
+          </div>
+          <div class="col-2">
+            <a class="btn btn-link btn-sm" href='/session/<%-session.__id%>/<%=user%>' role="button">Join</a>
+          </div>
+        </div>
+        <% }); %>
+        
         </div>
       </div>
-      <% }); %>
-      
-      
-    </div>
     
     <footer class="page-footer">
       <p>dd</p>

@@ -32,8 +32,13 @@ body {
     color: #ffffff;
 }
 
+.container-fluid{
+  height: 100%;
+  background: #12130F;
+  opacity: 0.9;
+}
+
 .container{
-  margin-top: 24px;
   color: white;
 }
 
@@ -54,11 +59,15 @@ body {
 }
 
 .col-4{
-  background: #222222;
+  background: #444444;
 }
 
-.col-5{
+.col-6{
   background: #333333;
+}
+
+.btn-link{
+  color: dodgerblue;
 }
 
 .page-footer{
