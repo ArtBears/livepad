@@ -60,6 +60,7 @@ function postReq(name, user, start, end){
     else if(resp.status == 200){
       var uid = resp.userId;
       var path = resp.path;
+      //console.log(path);
       //let session_path = "/session/" + id.toHexString();
       window.location.replace(path);
     }
