@@ -111,25 +111,22 @@ const streamSongs = function(db, callback) {
 }
 
 //also attempt to stream
-router.get("/session/listen/:session_id", (req, res, next) => {
-  let id = req.params.session_id;
-  const collection = req.db.collection("Songs");
-  collection.find({ sessionId: id }).toArray(function(err, results) {
-      //return page with info for session
-      console.log(results);
-      res.render("listen", { songs: results });
+try {
+        var process = new ffmpeg('/path/to/your_movie.avi');
+        process.then(function (audio) {
+            
+            audio
+            .addCommand('-f', 'mp3')
+            .save('tcp://localhost:9090', function (error, file) {
+                if (!error)
+                    console.log('Audio file: ' + file);
+            });
 
-      try {
-        new ffmpeg("/sessions/" + results.__id + ".ogg", function(err, audio) {
-          if (!err) {
-            console.log("The audio is ready to be processed");
-          } else {
-            console.log("Error: " + err);
-          }
+        }, function (err) {
+            console.log('Error: ' + err);
         });
-      } catch (e) {
+}
+catch (e) {
         console.log(e.code);
         console.log(e.msg);
-      }
-  });
-});
+}
