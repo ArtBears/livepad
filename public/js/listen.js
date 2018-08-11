@@ -87,6 +87,7 @@ function initWS() {
   };
 }
 
+//lists the songs in db with information
 const findSongs = function(db, callback) {
   // Get the Songs collection
   const collection = db.collection("Songs");
@@ -99,24 +100,27 @@ const findSongs = function(db, callback) {
   });
 };
 
+//attempt to stream
+const streamSongs = function(db, callback) {
+    const collection = db.collection("Songs");
+    collection.find({}).toArray(function(err, doc)) {
+        assert.equal(err, null);
+        console.log("Playing Songs");
+        new ffmpeg("/sessions/" + doc.song_name + '-' + Date.now() + ".ogg")
+    }
+}
+
+//also attempt to stream
 router.get("/session/listen/:session_id", (req, res, next) => {
   let id = req.params.session_id;
   const collection = req.db.collection("Songs");
   collection.find({ sessionId: id }).toArray(function(err, results) {
-    if (err) {
-      console.log("Session not found");
-      res.send("Session not found");
-    } else if (null === results) {
-      // session doesn't exit
-      let songError = "No Songs in this Session";
-      res.render("listen", { error: songError });
-    } else {
       //return page with info for session
       console.log(results);
       res.render("listen", { songs: results });
 
       try {
-        new ffmpeg("/path/to/your_movie.avi", function(err, audio) {
+        new ffmpeg("/sessions/" + results.__id + ".ogg", function(err, audio) {
           if (!err) {
             console.log("The audio is ready to be processed");
           } else {
@@ -127,6 +131,5 @@ router.get("/session/listen/:session_id", (req, res, next) => {
         console.log(e.code);
         console.log(e.msg);
       }
-    }
   });
 });
