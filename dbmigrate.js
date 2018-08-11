@@ -10,7 +10,7 @@ var ObjectId = require('mongodb').ObjectId;
 
 
 /* collections  */
-const liveCollections = ["Users", "Sessions", "Songs"];
+const liveCollections = ["users", "sessions", "songs"];
 
 var id = new ObjectId();
 console.log("Created ID: " + id)
