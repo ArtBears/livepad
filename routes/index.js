@@ -184,7 +184,6 @@ router.post('/session/new/:name/:user/:start/:end', (req, res, next) => {
 	// create a session in the DB
 	let id = new ObjectId();
 	let dir = createDir(id.toHexString());
-	
 	try {
 		req.db.collection('sessions')
 		.insertOne(
@@ -192,7 +191,8 @@ router.post('/session/new/:name/:user/:start/:end', (req, res, next) => {
 				__id: id,
 				name: req.params.name,
 				date: new Date(),
-				"$push": {users: req.params.user},
+				//"push": {users: req.params.user},
+				push: {users: req.params.user},
 				diskLocation: dir
 			}
 		);
