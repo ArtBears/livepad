@@ -28,8 +28,18 @@ function postReq(username, pass){
   {
    method: 'post',
    body: fd
-  }).then(response => console.log(response))
-  .catch(error => console.log(error));
+ })
+  .then(function(){
+    //nothing works
+    //window.location.href = '/session/list';
+
+
+ })
+  .catch(function(){
+
+ });
+  //}).then(response => console.log("it works cool"))
+  //.catch(error => console.log(error, "there should be an error here"));
 }
 
 /*
