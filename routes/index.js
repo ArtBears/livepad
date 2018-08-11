@@ -192,7 +192,7 @@ router.post('/session/new/:name/:user/:start/:end', (req, res, next) => {
 				__id: id,
 				name: req.params.name,
 				date: new Date(),
-				$push: {users: req.params.user},
+				push: {users: req.params.user},
 				diskLocation: dir
 			}
 		);

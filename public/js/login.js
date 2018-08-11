@@ -45,7 +45,8 @@ function postReq(username, pass){
       confirm(resp.error)
     }
     else if(resp.status == 200){
-      window.location.replace('/session/list');
+      var userId = resp.userId;
+      window.location.replace('/session/list/'+userId);
     }
   });
 }

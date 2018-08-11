@@ -23,9 +23,7 @@
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
             <!--replace with user eeeeeeeee
-            <% sessions.forEach(function(session, users) { %>
-              <a class="nav-link">USERNAME HERE</a>
-            <% }); %>
+              <a class="nav-link">user.user_id</a>
             -->
           </li>
         </ul>
@@ -34,9 +32,8 @@
     
     <div class="container text-center" id="parent">
       <div class="row justify-content-center align-self-center .no-gutters">
-        <button type="button" class="btn btn-outline-dark btn-block">
-            New Session
-          </button>
+        <p id="userelement" style="display:none"><%= user %>dd</p>
+        <a class="btn btn-outline-dark btn-block" role="button" onclick="newSession()">New Session</a>
       </div>
       <br><br>
       
