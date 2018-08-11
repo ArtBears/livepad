@@ -33,8 +33,8 @@ function postReq(username, pass){
   }).then(function(response){
     return response.json();
   })
-  .then(function(){
-    console.log("aa");
+  .then(function(resp){
+    console.log(resp);
   });
 }
 

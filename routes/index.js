@@ -43,18 +43,18 @@ router.post('/login/:username/:pass', (req,res,next) => {
 				// some error occured with query
 				// console.log(err);
 				console.log("User " +user+ " not found");
-				res.status(400).send( { error: "User " +user+ " not found" } );
+				res.status(400).json( { status: 400, error: "User " +user+ " not found" } );
 			}
 			else if(null == doc){
 				// session doesn't exit
 				console.log("User: " +user+ " doesn't exist");
 				let userError = "Your password or username may be invalid.";
-				res.status(400).send( {error: userError} );
+				res.status(400).json( { status: 400, error: userError} );
 			}
 			else {
 				//return page with info for session
 				console.log(doc);
-				res.status(200).send( { username: user, userId: doc.__id, loggedin: true } );
+				res.status(200).json( { status: 200, username: user, userId: doc.__id, loggedin: true } );
 			}
 		})
 })
@@ -75,7 +75,7 @@ router.post('/signup/:username/:pass', (req,res,next) => {
 				// some error occured with query
 				// console.log(err);
 				console.log("User " +user+ " not found");
-				res.send("User " +user+ " not found");
+				res.status(400).json({ status: 400, error: "User " +user+ " not found"});
 			}
 			else if(null == doc){
 				// user doesn't exit so create
@@ -86,18 +86,18 @@ router.post('/signup/:username/:pass', (req,res,next) => {
 					
 					// respond with success 
 					// frontend should link to sessions/list
-					res.status(201).send({username: user, userId: id, loggedin: true});
+					res.status(201).json({status: 201, username: user, userId: id, loggedin: true});
 				}
 				catch(e) {
 					console.log(e)
-					res.status(400).send({ error: e });
+					res.status(400).json({ status: 400, error: e });
 				}
 			}
 			else {
 				//return page with info for session
 				console.log(doc);
 				let userError = "User already exists";
-				res.status(400).send( { error: userError } );
+				res.status(400).json( { status: 400, error: userError } );
 			}
 		})
 })
@@ -112,7 +112,7 @@ router.get('/session/list', (req, res, next) => {
 				// some error occured with query
 				// console.log(err);
 				console.log("Sessions not found");
-				res.send("Session not found");
+				res.status(400).send("Session not found");
 			}
 			else if(null == doc){
 				// session doesn't exit
@@ -138,7 +138,7 @@ router.get('/session/listen/:session_id', (req, res, next) => {
 				// some error occured with query
 				// console.log(err);
 				console.log("Session not found");
-				res.send("Session not found");
+				res.status(400).send("Session not found");
 			}
 			else if(null == results){
 				// session doesn't exit
@@ -164,12 +164,13 @@ router.get('/session/:session_id', (req, res, next) => {
 				// some error occured with query
 				// console.log(err);
 				console.log("Session not found");
-				res.send("Session not found");
+				res.status(400).send("Session not found");
 			}
 			else if(null == doc){
 				// session doesn't exit
 				console.log("session doesn't exist");
-				res.send(id);
+				let e = "session doesn't exist";
+				res.status(400).send({error: e,  sessionId: id);
 			}
 			else {
 				//return page with info for session
@@ -196,10 +197,10 @@ router.post('/session/new/:name/:user/:start/:end', (req, res, next) => {
 			}
 		);
 				let session_path = "/session/" + id.toHexString();
-				res.status(200).send({path: session_path});
+				res.status(200).json({status: 200, path: session_path});
 	}
 	catch (e) {
-		res.status(400).send({error: e})
+		res.status(400).json({ status: 400, error: e})
 	}
 });
 
@@ -225,11 +226,11 @@ router.get('/session/createSong/:session_id/:user_id', (req, res, next) => {
 				.updateOne( {__id: req.params.session_id},
 							{$push: {songs: id} }); // id is ObjectId("24ByteHexCode")
 					
-		res.status(200).render('createSong' ,{id: id, sessionId: req.params.session_id, userId: req.params.user_id});					
+		res.status(200).render('createSong' , {id: id, sessionId: req.params.session_id, userId: req.params.user_id});					
 	}
 	catch(e) {
 		console.log("Problem Making Song");
-		res.status(400).send({area: "/session/" + req.params.session_id, error: e});
+		res.status(400).json({status: 400, area: "/session/" + req.params.session_id, error: e});
 	}
 });
 
@@ -246,11 +247,11 @@ router.post('/song/upload/:session_id/:song_id/:song_name/:length', upload.singl
 			 		length: req.params.length
 			 	}
 			);
-		res.status(201).send({session: "/session/"+ req.params.session_id});
+		res.status(201).json({status: 201, session: "/session/"+ req.params.session_id});
 		console.log(req.file);
 	}
 	catch(e){
-		res.status(400).send({ error: e });
+		res.status(400).json({ status: 400, error: e });
 	}
 });
 
