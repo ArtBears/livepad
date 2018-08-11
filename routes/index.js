@@ -103,7 +103,7 @@ router.post('/signup/:username/:pass', (req,res,next) => {
 })
 
 
-router.get('/session/list', (req, res, next) => {
+router.get('/session/list/:user_id', (req, res, next) => {
 	// Grab list of sessions from the database and list them
 	req.db.collection('sessions')
 		.find()
@@ -123,7 +123,7 @@ router.get('/session/list', (req, res, next) => {
 			else {
 				//return page with info for session
 				console.log(doc);
-				res.render("list", {sessions: doc});
+				res.render("list", {sessions: doc, user: req.params.user_id});
 			}
 		})
 
