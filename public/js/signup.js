@@ -33,6 +33,12 @@ function postReq(username, pass){
   })
   .then(function(resp){
     console.log(resp);
+    if(resp.status == 400){
+      confirm(resp.error)
+    }
+    else if(resp.status == 201){
+      window.location.replace('/session/list');
+    }
   });
 }
 

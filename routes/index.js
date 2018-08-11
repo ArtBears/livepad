@@ -170,7 +170,7 @@ router.get('/session/:session_id', (req, res, next) => {
 				// session doesn't exit
 				console.log("session doesn't exist");
 				let e = "session doesn't exist";
-				res.status(400).send({error: e,  sessionId: id);
+				res.status(400).send({error: e,  sessionId: id});
 			}
 			else {
 				//return page with info for session
@@ -270,4 +270,3 @@ function createDir(id){/* return string of rel location */
 }
 
 module.exports = router;
->>>>>>> webserver
