@@ -13,7 +13,7 @@
   </head>
   <body>
     <nav class="navbar navbar-custom navbar-expand">
-      <a class="navbar-brand" href="#"><%= user.name %></a>
+      <a class="navbar-brand" href="#"><%= user %></a>
      
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav">
@@ -58,7 +58,7 @@
             <h6><%= session.name %></h6>
             <small class="text-muted"><%=session.date%></small>
           </div>
-          <div class="col-4"> Users: 
+          <div class="col-4"> 
             <%= session.users %>
             <% i++; %>
           </div>
@@ -70,14 +70,6 @@
         
         </div>
       </div>
-    
-    <footer class="page-footer">
-      <p>dd</p>
-        
-    </footer>
-
-
-
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

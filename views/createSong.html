@@ -135,7 +135,6 @@
           <div class="triBn" onclick="setTri()" id="tri">TRI</div>
           <div class="sqrBn" onclick="setSqr()" id="sqr">SQR</div>
         </div>
-        <br>
         <div class="row align-items-stretch justify-content-center">
           <div class="aminBn" onclick="setAmin()" id="aMin">Am</div>
           <div class="cmajBn" onclick="setCmaj()" id="cMaj">C</div>
@@ -143,9 +142,17 @@
         </div>
         <br>
         <div class="row align-items-stretch justify-content-center">
-          <div class="uploadBn" onclick="upload()" id="upload">UPLOAD & QUIT</div>
+          <form>
+            <div class="form-row">
+              <div class="col">
+                <input type="text" class="form-control" id="nameholder" placeholder="Song Name">
+                <div class="uploadBn" onclick="upload()" id="upload">UPLOAD & QUIT</div>
+              </div>
+            </div>
+          </form>
         </div>
     </div>
+
       <footer class="page-footer">
       <p>add fancy footer text</p>
         
