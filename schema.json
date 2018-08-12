@@ -44,7 +44,7 @@
         "songs": {"validator": {
             "$jsonSchema": {
                 "bsonType": "object", 
-                "required": ["__id", "name", "userId", "sessionId", "length"],
+                "required": ["__id", "name", "userId", "sessionId"],
                 "properties": {
                     "__id": {
                         "bsonType": "objectId",
@@ -64,7 +64,7 @@
                         "description": "ObjectId of the session the songbelongs to. Required"
                     },
                     "length": {
-                        "bsonType": "double",
+                        "bsonType": "number",
                         "description": "Length of the song as a double. Required"
                     }
                 }

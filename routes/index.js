@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mongo = require('mongodb');
 var ObjectId = require('mongodb').ObjectId;
+var Double = require('mongodb'). Double;
 var path  = require('path');
 var fs = require('fs');
 var multer = require('multer');
@@ -156,7 +157,7 @@ router.get('/session/listen/:session_id', (req, res, next) => {
 
 router.get('/session/:session_id/:user_id', (req, res, next) => {
 	// loads the session page and lists the current users
-	let id = new ObjectId(req.params.session_id);
+	let id = ObjectId(req.params.session_id);
 	req.db.collection('sessions')
 		.find({__id: id})
 		.next( (err, doc)=>{
@@ -193,6 +194,7 @@ router.post('/session/new/:name/:user/:start/:end', (req, res, next) => {
 				date: new Date(),
 				//"push": {users: req.params.user},
 				users: [req.params.user],
+				songs: [],
 				diskLocation: dir
 			}
 		);
@@ -210,7 +212,12 @@ router.get('/session/createSong/:session_id/:user_id', (req, res, next) => {
 	// required ["__id", "name", "userId", "sessionId", "length"]
 	let id = new ObjectId();
 	let temp_song_name = req.params.session_id + "-" + req.params.user_id;
-	
+	let len = new Double(0.00);
+	console.log("LENGTH: " + len.valueOf());
+	console.log("SONG ID: " + id);
+	console.log("USER ID: " + req.params.user_id);
+	console.log("Session ID: " + req.params.session_id);
+	console.log(temp_song_name);
 	try {
 		req.db
 			.collection('songs')
@@ -219,18 +226,18 @@ router.get('/session/createSong/:session_id/:user_id', (req, res, next) => {
 					name: temp_song_name,
 					userId: req.params.user_id,
 					sessionId: req.params.session_id,
-					length: 0.00
+					length: len.valueOf()
 				});
 		console.log("Saving to Sessions DB");
 		req.db
 			.collection('sessions')
-				.updateOne( {__id: req.params.session_id},
+				.updateOne( {__id: ObjectId(req.params.session_id) },
 							{"$push": {songs: id, users: req.params.user_id} }); // id is ObjectId("24ByteHexCode")
 					
 		res.status(200).render('createSong' , {id: id, sessionId: req.params.session_id, userId: req.params.user_id});					
 	}
 	catch(e) {
-		console.log("Problem Making Song");
+		console.log("Problem Making Song: " + e);
 		res.status(400).json({status: 400, area: "/session/" + req.params.session_id, error: e});
 	}
 });
@@ -242,7 +249,7 @@ router.post('/song/upload/:session_id/:song_id/:song_name/:length', upload.singl
 	try {
 		req.db.collection('songs')
 			.updateOne(	
-				{ __id: req.params.song_id}, 	// where this is true
+				{ __id: ObjectId(req.params.song_id) }, 	// where this is true
 				{								// and update these properties
 					name: req.params.song_name,
 			 		length: req.params.length
