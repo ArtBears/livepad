@@ -1,6 +1,4 @@
-var ffmpeg = require("ffmpeg");
-var express = require("express");
-var router = express.Router();
+var exec = require('exec');
 const MongoClient = require("mongodb").MongoClient;
 const assert = require("assert");
 
@@ -87,6 +85,12 @@ function initWS() {
   };
 }
 
+child = exec("ffmpeg -i " + app.locals.session_path + test.mp3 + "-f mp3 tcp://localhost:9090",function(error,stdout,stderr){
+    console.log('STDOUT: ',stdout);
+    console.log('STDERR: ',stderr);
+});
+
+/*
 //lists the songs in db with information
 const findSongs = function(db, callback) {
   // Get the Songs collection
@@ -130,3 +134,4 @@ catch (e) {
         console.log(e.code);
         console.log(e.msg);
 }
+*/
