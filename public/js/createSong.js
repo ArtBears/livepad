@@ -125,16 +125,16 @@ mediaRecorder.onstop = function(e){
 
   */
 
-  sn = document.getElementById("nameholder").value;
-  if(sn == ""){
-    sn = "Song Name";
+  var song_name;
+  song_name = document.getElementById("nameholder").value;
+  if(song_name == ""){
+    song_name = "Song Name";
   }
-  console.log(sn);
+  console.log(song_name);
 
-  var session_id = "5b6373f488e052c180b3a248";
-  var song_id = "5b6373f488e052c180b3a246";
-  var song_name = "testname";
-  var length = "5";
+  var session_id = document.getElementById("sessionId").innerText;
+  var song_id = document.getElementById("songId").innerText;
+  var length = "0";
 
   var fd = new FormData();
   fd.append('acorn', blob, song_name + ".ogg");

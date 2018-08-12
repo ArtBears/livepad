@@ -48,8 +48,6 @@ function postReq(username, pass){
     }
     else if(resp.status == 201){
       var userId = resp.userId;
-      usernom = resp.username;
-      console.log(usernom, "eee");
       window.location.replace('/session/list/'+userId);
     }
   });
