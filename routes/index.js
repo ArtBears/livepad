@@ -148,7 +148,7 @@ router.get('/session/listen/:session_id', (req, res, next) => {
 			}
 			else {
 				//return page with info for session
-				console.log(results);
+				console.log("Results: ", results);
 				res.render("listen", {songs: results});
 			}
 		})

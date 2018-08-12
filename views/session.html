@@ -13,22 +13,28 @@
   </head>
   <body>
     <nav class="navbar navbar-custom navbar-expand nav-justified">
-      <a class="navbar-brand" href="#"><%=user%></a>
+      <!-- using this for now because no access to user names -->
+      <a class="navbar-brand" href="#"><small class="text-muted">Your user id: </small><%=user%></a>
     </nav>
     
     <div class="container-fluid">
       <br><br><br>
       <div class="row rowcustom justify-content-center align-self-center">
         <div class="col-md-auto">
+          <!-- Name of session -->
           <h1><small>session</small><%= info.name %></h1>
         </div>
       </div>
       <div class="row rowcustom justify-content-center align-self-center">
         <div class="col-md-auto">
           <small class="muted">
-            <% info.users.forEach(function(value) { %>
-            <p><%= value %></p>
-            <% }); %>
+            <!-- Name of users in session, username currently outputs Id instead of users' name -->
+            List of users in session, delete this line when fixed, duplicates are being made within {session: users}
+            <p>
+              <% info.users.forEach(function(username) { %>
+                <%= username %>
+              <% }); %>
+            </p>
           </small>
         </div>
       </div>

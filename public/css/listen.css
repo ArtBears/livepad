@@ -15,6 +15,11 @@ body {
   color: white;
 }
 
+.navbar-brand{
+  width: 100%;
+  text-align: center;
+}
+
 .navbar-custom .navbar-nav .nav-link {
     color: #888888;
 }
@@ -29,21 +34,25 @@ body {
 
 .container-fluid{
   height: 100%;
-  background: #111111;
+  background: #12130F;
+  opacity: 0.9;
 }
-
-.container{
-  background: red;
-}
-
 
 .row{
   color: white;
-  background: black;
+  border-bottom: 1px solid #222222;
 }
 
-.col-5{
-  background: green;
+.col-2{
+  background: #111111;
+}
+
+.col-4{
+  background: #333333;
+}
+
+.col-6{
+  background: #444444;
 }
 
 no-spinners {

@@ -13,7 +13,8 @@
   </head>
   <body>
     <nav class="navbar navbar-custom navbar-expand">
-      <a class="navbar-brand" href="#"><%= user %></a>
+      <!-- using this for now because no access to user names -->
+      <a class="navbar-brand" href="#"><small class="text-muted">Your user id: </small><%= user %></a>
      
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav">
@@ -22,7 +23,7 @@
         </ul>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <!--replace with user eeeeeeeee
+            <!--ignore this
               <a class="nav-link">user.user_id</a>
             -->
           </li>
@@ -34,6 +35,7 @@
       <br>
       <div class="container text-center" id="parent">
         <div class="row justify-content-center align-self-center">
+          <!-- hidden element for user blob -->
           <p id="userelement" style="display:none"><%= user %></p>
           <a class="btn btn-outline-dark btn-block" role="button" onclick="newSession()">New Session</a>
         </div>
@@ -59,8 +61,11 @@
             <small class="text-muted"><%=session.date%></small>
           </div>
           <div class="col-4"> 
+            <small>populate inner small tag with users from session</small>
+          <!-- Displaying Users isn't working, duplicate of unique users is occuring, no access to user names
             <%= session.users %>
             <% i++; %>
+          -->
           </div>
           <div class="col-2">
             <a class="btn btn-link btn-sm" href='/session/<%-session.__id%>/<%=user%>' role="button">Join</a>
