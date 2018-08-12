@@ -10,6 +10,7 @@ var context = new AudioContext();
 var song = context.createMediaStreamDestination();
 var mediaRecorder = new MediaRecorder(song.stream);
 
+//init for sound frequencies.
 var val_one = 1.0;
 var val_two = 2.0;
 var val_three = 3.0;
@@ -19,10 +20,12 @@ var val_six = 6.0;
 var val_seven = 7.0;
 var val_eight = 8.0;
 
+//declare button scale elements
 amin_button = document.getElementById("aMin");
 cmaj_button = document.getElementById("cMaj");
 gmaj_button = document.getElementById("gMaj");
 
+//initializes pad in the key of Am
 function initScale(){
   aMin();
   amin_button.style.borderColor = "dodgerblue";
@@ -48,6 +51,7 @@ function tempoToMs(){
   return ms;
 }
 
+//unusued, took up too much TIME
 var start_time;
 var total_min = 0;
 var total_sec = 0;
@@ -86,7 +90,7 @@ function record(){
 }
 
 function upload(){
-	mediaRecorder.stop();
+  mediaRecorder.stop();
 }
 
 function startT(){
@@ -109,6 +113,8 @@ mediaRecorder.ondataavailable = function(e){
   chunks.push(e.data);
 };
 
+
+
 mediaRecorder.onstop = function(e){
   var blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
   document.querySelector("audio").src = URL.createObjectURL(blob);
@@ -118,6 +124,13 @@ mediaRecorder.onstop = function(e){
   "/song/upload/:session_id/:song_id/:song_name/:length"
 
   */
+
+  sn = document.getElementById("nameholder").value;
+  if(sn == ""){
+    sn = "Song Name";
+  }
+  console.log(sn);
+
   var session_id = "5b6373f488e052c180b3a248";
   var song_id = "5b6373f488e052c180b3a246";
   var song_name = "testname";
@@ -133,18 +146,24 @@ mediaRecorder.onstop = function(e){
 };
 
 /*
+for my own reference
 <div class="sinBn" onclick="setSin()" id="upload">SIN</div>
 <div class="sawBn" onclick="setSaw()" id="saw">SAW</div>
 <div class="triBn" onclick="setTri()" id="tri">TRI</div>
 <div class="sqrBn" onclick="setSqr()" id="sqr">SQR</div>
 */
 
+//initialize oscillator sound
 var osc_type = "sine";
 sin_button = document.getElementById("sin");
 saw_button = document.getElementById("saw");
 tri_button = document.getElementById("tri");
 sqr_button = document.getElementById("sqr");
 sin_button.style.borderColor = "dodgerblue";
+
+/*
+  set oscillator to what the function is named
+*/
 
 function setSin(){
   osc_type = "sine";
