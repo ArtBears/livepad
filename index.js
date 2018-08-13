@@ -11,13 +11,9 @@ var MongoClient = require('mongodb').MongoClient;
 const schemas = JSON.parse(fs.readFileSync('./schema.json', 'utf8')).schemas;
 global.appRoot = path.resolve(__dirname);
 
-var firstPacket = [];
 
 app = express();
 app.locals.session_path = global.appRoot + "/sessions/";
-
-/* All WS Clients*/
-var wsClients = [];
 
 /* collections  */
 const liveCollections = ["Users", "Sessions", "Songs"];
@@ -47,55 +43,6 @@ app.use(express.static('public/audio/Samples1/hhat1.wv'));
 
 app.use('/', index);
 
-/** HTTP server */
-var server = http.createServer(app);
-
-/** TCP server */
-var tcpServer = net.createServer(function(socket) {
-    socket.on('data', function(data){
-
-      //Saving first packets of stream. These packets will be send to every new user. 
-      if(firstPacket.length < 3){ 
-        console.log('Init first packet', firstPacket.length);
-        firstPacket.push(data); 
-      }
-
-      /**
-       * Send stream to all clients
-       */
-      wsClients.map(function(client, index){
-        client.sendBytes(data);
-      });
-    });
-});
-
-tcpServer.listen(9090, 'localhost');
-
-/** Websocket */
-var wsServer = new WebSocketServer({
-    httpServer: server,
-    autoAcceptConnections: false
-});
-
-wsServer.on('request', function(request) {
-  var connection = request.accept('echo-protocol', request.origin);
-  console.log((new Date()) + ' Connection accepted.');
-
-  if(firstPacket.length){
-    //Every user will get beginning of stream
-    firstPacket.map(function(packet, index){
-      connection.sendBytes(packet); 
-    });
-    
-  }
-    
-  //Add this user to collection
-  wsClients.push(connection);
-
-  connection.on('close', function(reasonCode, description) {
-      console.log((new Date()) + ' Peer ' + connection.remoteAddress + ' disconnected.');
-  });
-});
 
 // To run app without database access uncomment the next line 
 //app.listen(3000, () => {console.log("app running")});
@@ -137,7 +84,7 @@ MongoClient.connect("mongodb://localhost:27017", {useNewUrlParser: true}, functi
             }   
         })
         
- 		server.listen(3000, () => { console.log(" App Listening on Port 3000 ") }); 
+ 		app.listen(3000, () => { console.log(" App Listening on Port 3000 ") }); 
  	}
  })
 

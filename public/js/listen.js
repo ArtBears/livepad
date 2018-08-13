@@ -1,3 +1,9 @@
+var http = require('http');
+var net = require('net');
+var path = require('path');
+var express = require('express');
+var app = express();
+const WebSocket = require('ws');
 var exec = require('exec');
 const MongoClient = require("mongodb").MongoClient;
 const assert = require("assert");
@@ -23,6 +29,88 @@ MongoClient.connect(url, { useNewUrlParser: true }, function(err, client) {
     client.close();
   });
 });
+
+var firstPacket = [];
+
+var options = {
+    root: path.resolve(__dirname,),
+    httpPort:8080,
+    tcpPort: 9090
+};
+
+// Send static files with express
+app.use(express.static(options.root));
+
+var wsClients = [];
+
+app.get('/', function(req, res){
+    res.sendFile('listen.html', options);
+});
+
+/** HTTP server */
+var server = http.createServer(app);
+server.listen(options.httpPort);
+
+/** TCP server */
+var tcpServer = net.createServer(function(socket) {
+    socket.on('data', function(data){
+
+      /**
+       * We are saving first packets of stream. These packets will be send to every new user.
+       * This is hack. Video won't start whitout them.  
+       */
+      if(firstPacket.length < 3){ 
+        console.log('Init first packet', firstPacket.length);
+        firstPacket.push(data); 
+      }
+
+      /**
+       * Send stream to all clients
+       */
+      wsClients.map(function(client, index){
+        client.sendBytes(data);
+      });
+    });
+});
+
+tcpServer.listen(options.tcpPort, 'localhost');
+
+
+const wss = new WebSocket.Server({
+    server: server,
+    autoAcceptConnections: false
+});
+
+wss.on('request', function(request) {
+    var connection = request.accept('echo-protocol', requeset.origin);
+    console.log((new Date()) + 'Connection accepted.');
+
+    if(firstPacket.length){
+    firstPacket.map(function(packet, index){
+      connection.sendBytes(packet); 
+    });
+    
+  };
+  wsClients.push(connection);
+
+  connection.on('close', function(reasonCode, description) {
+      console.log((new Date()) + ' Peer ' + connection.remoteAddress + ' disconnected.');
+  });
+});
+const socket = new WebSocket("ws://localhost:8080");
+
+socket.addEventListener('open', (event) => {
+  console.log("Now Open")
+  socket.send('testname-1533331174213.ogg');
+});
+
+socket.addEventListener('message', (event) => {
+  console.log("Response", event.data);
+});
+
+var codec = '';
+
+codec = 'audio/mpeg'
 
 //Locate the audio tag with id of THESTREAM
 var audio = document.getElementById("THESTREAM");
@@ -89,7 +177,6 @@ child = exec("ffmpeg -i " + app.locals.session_path + test.mp3 + "-f mp3 tcp://l
     console.log('STDOUT: ',stdout);
     console.log('STDERR: ',stderr);
 });
-
 /*
 //lists the songs in db with information
 const findSongs = function(db, callback) {
