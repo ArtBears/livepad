@@ -99,6 +99,7 @@ wss.on('request', function(request) {
 });
 const socket = new WebSocket("ws://localhost:8080");
 
+//not sure what to do here cause don't understand routes
 socket.addEventListener('open', (event) => {
   console.log("Now Open")
   socket.send('testname-1533331174213.ogg');
@@ -112,6 +113,7 @@ var codec = '';
 
 codec = 'audio/mpeg'
 
+//document not defined
 //Locate the audio tag with id of THESTREAM
 var audio = document.getElementById("THESTREAM");
 var mediaSource = new MediaSource();
@@ -172,7 +174,9 @@ function initWS() {
     }
   };
 }
-
+//creates a child to execute ffmpeg 
+//still needs the path of file and destination
+//does each user get there own audio bar?
 child = exec("ffmpeg -i " + app.locals.session_path + test.mp3 + "-f mp3 tcp://localhost:9090",function(error,stdout,stderr){
     console.log('STDOUT: ',stdout);
     console.log('STDERR: ',stderr);
