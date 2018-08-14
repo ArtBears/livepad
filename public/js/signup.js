@@ -10,22 +10,30 @@ signup page
     Redirect to session list with user
 */
 
-var username = "testname";
-var password = "testpass";
+var username = "";
+var password = "";
+var fd = new FormData();
 
+/*
+signup()
+parse username and password input fields
+make a post request call and pass username, password
+*/
 function signup(){
   username = document.getElementById("userNameInput").value;
   password = document.getElementById("passWordInput").value;
-  console.log(username + " " + password);
   postReq(username, password);
 }
 
+
+/*
+postReq(username, pass)
+takes username, password input and makes post request
+will do different things depending on response status code
+400 == error -> alert user
+201 == success -> redirect to next page
+*/
 function postReq(username, pass){
-  //fd.append('acorn', blob, song_name + ".ogg");
-  /*
-  '/signup/:username/:pass'
-  */
-  var fd = new FormData();
   fetch('/signup/'+username+'/'+pass, 
   {
    method: 'post',
@@ -33,8 +41,46 @@ function postReq(username, pass){
   }).then(function(response){
     return response.json();
   })
-  .then(function(){
-    console.log("aa");
+  .then(function(resp){
+    console.log(resp);
+    if(resp.status == 400){
+      confirm(resp.error)
+    }
+    else if(resp.status == 201){
+      var userId = resp.userId;
+      usernom = resp.username;
+      console.log(usernom, "eee");
+      window.location.replace('/session/list/'+userId);
+    }
   });
 }
 
+
+
+
+/* zombie code, used for my own reference
+
+function postReq(u, p){
+  var username = u;
+  var password = p;
+  console.log(username,password);
+  var data = {
+    name: username,
+    password: password
+   };
+  /*
+  '/signup/:username/:pass'
+
+  //fetch('/signup/'+username+'/'+pass, 
+  fetch('/signup/'+username+'/'+password, 
+  {
+   method: 'POST',
+   body: JSON.stringify(data),
+   headers: {
+    'Content-Type': 'application/json',
+  },
+  }).then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(response => console.log('Success:', response));
+}
+*/

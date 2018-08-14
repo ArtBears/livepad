@@ -10,7 +10,7 @@ var ObjectId = require('mongodb').ObjectId;
 
 
 /* collections  */
-const liveCollections = ["Users", "Sessions", "Songs"];
+const liveCollections = ["users", "sessions", "songs"];
 
 var id = new ObjectId();
 console.log("Created ID: " + id)
@@ -59,9 +59,9 @@ MongoClient.connect("mongodb://localhost:27017", { useNewUrlParser: true }, func
             }   
         })
         
-        db.collection('Sessions')
+        db.collection('sessions')
             .insertOne(session_1);
-        db.collection('Songs')
+        db.collection('songs')
             .insertOne(song_1);
  	}
 

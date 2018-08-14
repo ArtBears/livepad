@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mongo = require('mongodb');
 var ObjectId = require('mongodb').ObjectId;
+var Double = require('mongodb'). Double;
 var path  = require('path');
 var fs = require('fs');
 var multer = require('multer');
@@ -37,24 +38,24 @@ router.post('/login/:username/:pass', (req,res,next) => {
 	let user = req.params.username;
 	let pass = req.params.pass;
 	req.db.collection('users')
-		.find({ $and: [ { name: user }, { password: pass } ] })
+		.find({ "$and": [ { name: user }, { password: pass } ] })
 		.next((err, doc) => {
 			if(err){
 				// some error occured with query
 				// console.log(err);
 				console.log("User " +user+ " not found");
-				res.status(400).send( { error: "User " +user+ " not found" } );
+				res.status(400).json( { status: 400, error: "User " +user+ " not found" } );
 			}
 			else if(null == doc){
 				// session doesn't exit
 				console.log("User: " +user+ " doesn't exist");
 				let userError = "Your password or username may be invalid.";
-				res.status(400).send( {error: userError} );
+				res.status(400).json( { status: 400, error: userError} );
 			}
 			else {
 				//return page with info for session
 				console.log(doc);
-				res.status(200).send( { username: user, userId: doc.__id, loggedin: true } );
+				res.status(200).json( { status: 200, username: user, userId: doc.__id, loggedin: true } );
 			}
 		})
 })
@@ -75,7 +76,7 @@ router.post('/signup/:username/:pass', (req,res,next) => {
 				// some error occured with query
 				// console.log(err);
 				console.log("User " +user+ " not found");
-				res.send("User " +user+ " not found");
+				res.status(400).json({ status: 400, error: "User " +user+ " not found"});
 			}
 			else if(null == doc){
 				// user doesn't exit so create
@@ -86,24 +87,24 @@ router.post('/signup/:username/:pass', (req,res,next) => {
 					
 					// respond with success 
 					// frontend should link to sessions/list
-					res.status(201).send({username: user, userId: id, loggedin: true});
+					res.status(201).json({status: 201, username: user, userId: id, loggedin: true});
 				}
 				catch(e) {
 					console.log(e)
-					res.status(400).send({ error: e });
+					res.status(400).json({ status: 400, error: e });
 				}
 			}
 			else {
 				//return page with info for session
 				console.log(doc);
 				let userError = "User already exists";
-				res.status(400).send( { error: userError } );
+				res.status(400).json( { status: 400, error: userError } );
 			}
 		})
 })
 
 
-router.get('/session/list', (req, res, next) => {
+router.get('/session/list/:user_id', (req, res, next) => {
 	// Grab list of sessions from the database and list them
 	req.db.collection('sessions')
 		.find()
@@ -112,18 +113,18 @@ router.get('/session/list', (req, res, next) => {
 				// some error occured with query
 				// console.log(err);
 				console.log("Sessions not found");
-				res.send("Session not found");
+				res.status(400).send("Session not found");
 			}
 			else if(null == doc){
 				// session doesn't exit
 				console.log("session doesn't exist");
 				let sessionErr = "No Sessions Found"
-				res.render("list", {error: sessionErr});
+				res.render('list', {error: sessionErr});
 			}
 			else {
 				//return page with info for session
 				console.log(doc);
-				res.render("list", {sessions: doc});
+				res.render("list", {sessions: doc, user: req.params.user_id});
 			}
 		})
 
@@ -138,7 +139,7 @@ router.get('/session/listen/:session_id', (req, res, next) => {
 				// some error occured with query
 				// console.log(err);
 				console.log("Session not found");
-				res.send("Session not found");
+				res.status(400).send("Session not found");
 			}
 			else if(null == results){
 				// session doesn't exit
@@ -154,9 +155,9 @@ router.get('/session/listen/:session_id', (req, res, next) => {
 	// res.render('listen')
 })
 
-router.get('/session/:session_id', (req, res, next) => {
+router.get('/session/:session_id/:user_id', (req, res, next) => {
 	// loads the session page and lists the current users
-	let id = new ObjectId(req.params.session_id);
+	let id = ObjectId(req.params.session_id);
 	req.db.collection('sessions')
 		.find({__id: id})
 		.next( (err, doc)=>{
@@ -164,17 +165,18 @@ router.get('/session/:session_id', (req, res, next) => {
 				// some error occured with query
 				// console.log(err);
 				console.log("Session not found");
-				res.send("Session not found");
+				res.status(400).send("Session not found");
 			}
 			else if(null == doc){
 				// session doesn't exit
 				console.log("session doesn't exist");
-				res.send(id);
+				let e = "session doesn't exist";
+				res.status(400).send({error: e,  sessionId: id});
 			}
 			else {
 				//return page with info for session
 				console.log(doc);
-				res.render("session", {info: doc});
+				res.render("session", {info: doc, user: req.params.user_id});
 			}
 		})
 });
@@ -183,7 +185,6 @@ router.post('/session/new/:name/:user/:start/:end', (req, res, next) => {
 	// create a session in the DB
 	let id = new ObjectId();
 	let dir = createDir(id.toHexString());
-	
 	try {
 		req.db.collection('sessions')
 		.insertOne(
@@ -191,24 +192,32 @@ router.post('/session/new/:name/:user/:start/:end', (req, res, next) => {
 				__id: id,
 				name: req.params.name,
 				date: new Date(),
-				$push: {users: req.params.user},
+				//"push": {users: req.params.user},
+				users: [req.params.user],
+				songs: [],
 				diskLocation: dir
 			}
 		);
-				let session_path = "/session/" + id.toHexString();
-				res.status(200).send({path: session_path});
+				let session_path = "/session/" + id.toHexString() + '/' + req.params.user ;
+				res.status(200).json({status: 200, path: session_path});
 	}
 	catch (e) {
-		res.status(400).send({error: e})
+		res.status(400).json({ status: 400, error: e})
 	}
 });
 
 router.get('/session/createSong/:session_id/:user_id', (req, res, next) => {
 	// generate a song ID
 	// save the record of the song/session/user
+	// required ["__id", "name", "userId", "sessionId", "length"]
 	let id = new ObjectId();
 	let temp_song_name = req.params.session_id + "-" + req.params.user_id;
-	
+	let len = new Double(0.00);
+	console.log("LENGTH: " + len.valueOf());
+	console.log("SONG ID: " + id);
+	console.log("USER ID: " + req.params.user_id);
+	console.log("Session ID: " + req.params.session_id);
+	console.log(temp_song_name);
 	try {
 		req.db
 			.collection('songs')
@@ -217,19 +226,19 @@ router.get('/session/createSong/:session_id/:user_id', (req, res, next) => {
 					name: temp_song_name,
 					userId: req.params.user_id,
 					sessionId: req.params.session_id,
-					length: 0.00
+					length: len.valueOf()
 				});
 		console.log("Saving to Sessions DB");
 		req.db
 			.collection('sessions')
-				.updateOne( {__id: req.params.session_id},
-							{$push: {songs: id} }); // id is ObjectId("24ByteHexCode")
+				.updateOne( {__id: ObjectId(req.params.session_id) },
+							{"$push": {songs: id, users: req.params.user_id} }); // id is ObjectId("24ByteHexCode")
 					
-		res.status(200).render('createSong' ,{id: id, sessionId: req.params.session_id, userId: req.params.user_id});					
+		res.status(200).render('createSong' , {id: id, sessionId: req.params.session_id, userId: req.params.user_id});					
 	}
 	catch(e) {
-		console.log("Problem Making Song");
-		res.status(400).send({area: "/session/" + req.params.session_id, error: e});
+		console.log("Problem Making Song: " + e);
+		res.status(400).json({status: 400, area: "/session/" + req.params.session_id, error: e});
 	}
 });
 
@@ -240,17 +249,17 @@ router.post('/song/upload/:session_id/:song_id/:song_name/:length', upload.singl
 	try {
 		req.db.collection('songs')
 			.updateOne(	
-				{ __id: req.params.song_id}, 	// where this is true
+				{ __id: ObjectId(req.params.song_id) }, 	// where this is true
 				{								// and update these properties
 					name: req.params.song_name,
 			 		length: req.params.length
 			 	}
 			);
-		res.status(201).send({session: "/session/"+ req.params.session_id});
+		res.status(201).json({status: 201, session: "/session/"+ req.params.session_id});
 		console.log(req.file);
 	}
 	catch(e){
-		res.status(400).send({ error: e });
+		res.status(400).json({ status: 400, error: e });
 	}
 });
 

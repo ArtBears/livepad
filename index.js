@@ -16,7 +16,7 @@ app = express();
 app.locals.session_path = global.appRoot + "/sessions/";
 
 /* collections  */
-const liveCollections = ["Users", "Sessions", "Songs"];
+const liveCollections = ["users", "sessions", "songs"];
 
 /* routes */
 const index = require('./routes/index.js');
